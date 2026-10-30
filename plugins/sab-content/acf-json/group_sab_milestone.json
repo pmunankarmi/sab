@@ -1,0 +1,74 @@
+{
+  "key": "group_sab_milestone",
+  "title": "Milestone details",
+  "fields": [
+    {
+      "key": "field_sab_year",
+      "name": "sab_year",
+      "label": "Year",
+      "type": "number",
+      "required": 1,
+      "min": 1,
+      "max": 9999
+    },
+    {
+      "key": "field_sab_video",
+      "name": "sab_video",
+      "label": "Milestone video",
+      "type": "file",
+      "return_format": "id",
+      "mime_types": "mp4,webm"
+    },
+    {
+      "key": "field_sab_mask",
+      "name": "sab_mask",
+      "label": "Video mask",
+      "type": "image",
+      "return_format": "id",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_sab_cutout",
+      "name": "sab_cutout",
+      "label": "Cutout image",
+      "type": "true_false",
+      "ui": 1
+    },
+    {
+      "key": "field_sab_finale",
+      "name": "sab_finale",
+      "label": "Full-width finale treatment",
+      "type": "true_false",
+      "ui": 1
+    },
+    {
+      "key": "field_sab_layout",
+      "name": "sab_layout",
+      "label": "Cinematic layout",
+      "type": "select",
+      "choices": {
+        "layout-stack-left": "Stack Left",
+        "layout-pair-left": "Pair Left",
+        "layout-stack-center": "Stack Center",
+        "layout-pair-right": "Pair Right",
+        "layout-stack-right": "Stack Right"
+      },
+      "allow_null": 1,
+      "instructions": "Leave empty for automatic layout. Use native Order to arrange milestones, including milestones in the same year."
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "sab_milestone"
+      }
+    ]
+  ],
+  "active": true,
+  "style": "default",
+  "position": "normal",
+  "show_in_rest": false
+}

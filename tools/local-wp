@@ -1,0 +1,6 @@
+#!/bin/zsh
+set -eu
+SAB_PHP='/Users/puskar/Library/Application Support/Local/lightning-services/php-8.2.29+0/bin/darwin-arm64/bin/php'
+SAB_INI='/Users/puskar/Library/Application Support/Local/run/O_8_f_iqX/conf/php/php.ini'
+SAB_SOCKET='/Users/puskar/Library/Application Support/Local/run/O_8_f_iqX/mysql/mysqld.sock'
+exec "$SAB_PHP" -c "$SAB_INI" -d "mysqli.default_socket=$SAB_SOCKET" '/Applications/Local.app/Contents/Resources/extraResources/bin/wp-cli/wp-cli.phar' --path=/Users/puskar/Documents/Sites/SAB/app/public "$@"

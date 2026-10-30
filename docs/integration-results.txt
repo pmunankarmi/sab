@@ -1,0 +1,182 @@
+PASS Shared-slug helper registered
+PASS en sab_milestone record count
+PASS Translation pair shares slug: milestone-00-1926
+PASS Featured image present: milestone-00-1926
+PASS Translation pair shares slug: milestone-01-1926
+PASS Featured image present: milestone-01-1926
+PASS Translation pair shares slug: milestone-02-1926
+PASS Featured image present: milestone-02-1926
+PASS Translation pair shares slug: milestone-03-1927
+PASS Featured image present: milestone-03-1927
+PASS Translation pair shares slug: milestone-04-1928
+PASS Featured image present: milestone-04-1928
+PASS Translation pair shares slug: milestone-05-1929
+PASS Featured image present: milestone-05-1929
+PASS Translation pair shares slug: milestone-06-1930
+PASS Featured image present: milestone-06-1930
+PASS Translation pair shares slug: milestone-07-1931
+PASS Featured image present: milestone-07-1931
+PASS Translation pair shares slug: milestone-08-1933
+PASS Featured image present: milestone-08-1933
+PASS Translation pair shares slug: milestone-09-1935
+PASS Featured image present: milestone-09-1935
+PASS Translation pair shares slug: milestone-10-1939
+PASS Featured image present: milestone-10-1939
+PASS Translation pair shares slug: milestone-11-1945
+PASS Featured image present: milestone-11-1945
+PASS Translation pair shares slug: milestone-12-1977
+PASS Featured image present: milestone-12-1977
+PASS Translation pair shares slug: milestone-13-1981
+PASS Featured image present: milestone-13-1981
+PASS Translation pair shares slug: milestone-14-1987
+PASS Featured image present: milestone-14-1987
+PASS Translation pair shares slug: milestone-15-1990
+PASS Featured image present: milestone-15-1990
+PASS Translation pair shares slug: milestone-16-1990
+PASS Featured image present: milestone-16-1990
+PASS Translation pair shares slug: milestone-17-1996
+PASS Featured image present: milestone-17-1996
+PASS Translation pair shares slug: milestone-18-1999
+PASS Featured image present: milestone-18-1999
+PASS Translation pair shares slug: milestone-19-2001
+PASS Featured image present: milestone-19-2001
+PASS Translation pair shares slug: milestone-20-2002
+PASS Featured image present: milestone-20-2002
+PASS Translation pair shares slug: milestone-21-2003
+PASS Featured image present: milestone-21-2003
+PASS Translation pair shares slug: milestone-22-2004
+PASS Featured image present: milestone-22-2004
+PASS Translation pair shares slug: milestone-23-2004
+PASS Featured image present: milestone-23-2004
+PASS Translation pair shares slug: milestone-24-2005
+PASS Featured image present: milestone-24-2005
+PASS Translation pair shares slug: milestone-25-2005
+PASS Featured image present: milestone-25-2005
+PASS Translation pair shares slug: milestone-26-2006
+PASS Featured image present: milestone-26-2006
+PASS Translation pair shares slug: milestone-27-2009
+PASS Featured image present: milestone-27-2009
+PASS Translation pair shares slug: milestone-28-2012
+PASS Featured image present: milestone-28-2012
+PASS Translation pair shares slug: milestone-29-2013
+PASS Featured image present: milestone-29-2013
+PASS Translation pair shares slug: milestone-30-2015
+PASS Featured image present: milestone-30-2015
+PASS Translation pair shares slug: milestone-31-2019
+PASS Featured image present: milestone-31-2019
+PASS Translation pair shares slug: milestone-32-2022
+PASS Featured image present: milestone-32-2022
+PASS Translation pair shares slug: milestone-33-2023
+PASS Featured image present: milestone-33-2023
+PASS Translation pair shares slug: milestone-34-2023
+PASS Featured image present: milestone-34-2023
+PASS Translation pair shares slug: milestone-35-2026
+PASS Featured image present: milestone-35-2026
+PASS en sab_leader record count
+PASS Translation pair shares slug: chair
+PASS Featured image present: chair
+PASS Translation pair shares slug: ceo
+PASS Featured image present: ceo
+PASS ar sab_milestone record count
+PASS Translation pair shares slug: milestone-00-1926
+PASS Featured image present: milestone-00-1926
+PASS Translation pair shares slug: milestone-01-1926
+PASS Featured image present: milestone-01-1926
+PASS Translation pair shares slug: milestone-02-1926
+PASS Featured image present: milestone-02-1926
+PASS Translation pair shares slug: milestone-03-1927
+PASS Featured image present: milestone-03-1927
+PASS Translation pair shares slug: milestone-04-1928
+PASS Featured image present: milestone-04-1928
+PASS Translation pair shares slug: milestone-05-1929
+PASS Featured image present: milestone-05-1929
+PASS Translation pair shares slug: milestone-06-1930
+PASS Featured image present: milestone-06-1930
+PASS Translation pair shares slug: milestone-07-1931
+PASS Featured image present: milestone-07-1931
+PASS Translation pair shares slug: milestone-08-1933
+PASS Featured image present: milestone-08-1933
+PASS Translation pair shares slug: milestone-09-1935
+PASS Featured image present: milestone-09-1935
+PASS Translation pair shares slug: milestone-10-1939
+PASS Featured image present: milestone-10-1939
+PASS Translation pair shares slug: milestone-11-1945
+PASS Featured image present: milestone-11-1945
+PASS Translation pair shares slug: milestone-12-1977
+PASS Featured image present: milestone-12-1977
+PASS Translation pair shares slug: milestone-13-1981
+PASS Featured image present: milestone-13-1981
+PASS Translation pair shares slug: milestone-14-1987
+PASS Featured image present: milestone-14-1987
+PASS Translation pair shares slug: milestone-15-1990
+PASS Featured image present: milestone-15-1990
+PASS Translation pair shares slug: milestone-16-1990
+PASS Featured image present: milestone-16-1990
+PASS Translation pair shares slug: milestone-17-1996
+PASS Featured image present: milestone-17-1996
+PASS Translation pair shares slug: milestone-18-1999
+PASS Featured image present: milestone-18-1999
+PASS Translation pair shares slug: milestone-19-2001
+PASS Featured image present: milestone-19-2001
+PASS Translation pair shares slug: milestone-20-2002
+PASS Featured image present: milestone-20-2002
+PASS Translation pair shares slug: milestone-21-2003
+PASS Featured image present: milestone-21-2003
+PASS Translation pair shares slug: milestone-22-2004
+PASS Featured image present: milestone-22-2004
+PASS Translation pair shares slug: milestone-23-2004
+PASS Featured image present: milestone-23-2004
+PASS Translation pair shares slug: milestone-24-2005
+PASS Featured image present: milestone-24-2005
+PASS Translation pair shares slug: milestone-25-2005
+PASS Featured image present: milestone-25-2005
+PASS Translation pair shares slug: milestone-26-2006
+PASS Featured image present: milestone-26-2006
+PASS Translation pair shares slug: milestone-27-2009
+PASS Featured image present: milestone-27-2009
+PASS Translation pair shares slug: milestone-28-2012
+PASS Featured image present: milestone-28-2012
+PASS Translation pair shares slug: milestone-29-2013
+PASS Featured image present: milestone-29-2013
+PASS Translation pair shares slug: milestone-30-2015
+PASS Featured image present: milestone-30-2015
+PASS Translation pair shares slug: milestone-31-2019
+PASS Featured image present: milestone-31-2019
+PASS Translation pair shares slug: milestone-32-2022
+PASS Featured image present: milestone-32-2022
+PASS Translation pair shares slug: milestone-33-2023
+PASS Featured image present: milestone-33-2023
+PASS Translation pair shares slug: milestone-34-2023
+PASS Featured image present: milestone-34-2023
+PASS Translation pair shares slug: milestone-35-2026
+PASS Featured image present: milestone-35-2026
+PASS ar sab_leader record count
+PASS Translation pair shares slug: chair
+PASS Featured image present: chair
+PASS Translation pair shares slug: ceo
+PASS Featured image present: ceo
+PASS Theme Options logo updates native custom_logo
+PASS Native logo updates Theme Options field
+PASS Removing Theme Options logo removes native logo
+PASS Removing native logo clears Theme Options control
+PASS Logo field has no duplicate option storage
+PASS Reimport creates no duplicate content or media
+PASS HTTP 200 /en/home/
+PASS No PHP errors in /en/home/
+PASS Translated navigation rendered /en/home/
+PASS Dynamic milestone data present /en/home/
+PASS HTTP 200 /ar/home/
+PASS No PHP errors in /ar/home/
+PASS Translated navigation rendered /ar/home/
+PASS Dynamic milestone data present /ar/home/
+PASS Arabic document direction /ar/home/
+PASS HTTP 200 /en/timeline/
+PASS No PHP errors in /en/timeline/
+PASS Translated navigation rendered /en/timeline/
+PASS Dynamic milestone data present /en/timeline/
+PASS HTTP 200 /ar/timeline/
+PASS No PHP errors in /ar/timeline/
+PASS Translated navigation rendered /ar/timeline/
+PASS Dynamic milestone data present /ar/timeline/
+PASS Arabic document direction /ar/timeline/
+Integration suite complete.

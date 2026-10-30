@@ -1,0 +1,128 @@
+{
+  "key": "group_sab_brand",
+  "title": "Branding",
+  "fields": [
+    {
+      "key": "field_sab_brand_tab",
+      "name": "sab_brand_tab",
+      "label": "Branding",
+      "type": "tab"
+    },
+    {
+      "key": "field_sab_primary_logo",
+      "name": "sab_primary_logo",
+      "label": "Primary logo",
+      "type": "image",
+      "return_format": "id",
+      "preview_size": "medium",
+      "library": "all",
+      "instructions": "Uses the same native setting as Appearance \u2192 Customize \u2192 Site Identity. Changes and removal work in both locations."
+    },
+    {
+      "key": "field_sab_dark_logo",
+      "name": "sab_dark_logo",
+      "label": "Logo for dark backgrounds",
+      "type": "image",
+      "return_format": "id",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_sab_emblem",
+      "name": "sab_emblem",
+      "label": "Timeline emblem",
+      "type": "image",
+      "return_format": "id",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_sab_contact_tab",
+      "name": "sab_contact_tab",
+      "label": "Shared contact details",
+      "type": "tab"
+    },
+    {
+      "key": "field_sab_phone",
+      "name": "sab_phone",
+      "label": "Phone",
+      "type": "text"
+    },
+    {
+      "key": "field_sab_email",
+      "name": "sab_email",
+      "label": "Email",
+      "type": "email"
+    },
+    {
+      "key": "field_sab_website",
+      "name": "sab_website",
+      "label": "Website",
+      "type": "url"
+    },
+    {
+      "key": "field_sab_map",
+      "name": "sab_map",
+      "label": "Map URL",
+      "type": "url"
+    },
+    {
+      "key": "field_sab_social_tab",
+      "name": "sab_social_tab",
+      "label": "Social media",
+      "type": "tab"
+    },
+    {
+      "key": "field_sab_social",
+      "name": "sab_social",
+      "label": "Social links",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Add social link",
+      "sub_fields": [
+        {
+          "key": "field_sab_social_platform",
+          "name": "sab_social_platform",
+          "label": "Platform",
+          "type": "select",
+          "choices": {
+            "x": "X",
+            "linkedin": "LinkedIn",
+            "instagram": "Instagram",
+            "facebook": "Facebook",
+            "youtube": "YouTube",
+            "other": "Other"
+          },
+          "return_format": "value"
+        },
+        {
+          "key": "field_sab_social_label",
+          "name": "sab_social_label",
+          "label": "Accessible label",
+          "type": "text",
+          "required": 1
+        },
+        {
+          "key": "field_sab_social_url",
+          "name": "sab_social_url",
+          "label": "URL",
+          "type": "url",
+          "required": 1
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "options_page",
+        "operator": "==",
+        "value": "sab-options"
+      }
+    ]
+  ],
+  "active": true,
+  "style": "default",
+  "position": "normal",
+  "show_in_rest": false
+}

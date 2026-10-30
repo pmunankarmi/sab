@@ -1,0 +1,589 @@
+
+  /* ── Univers Next / Univers Arabic (the client's licensed brand faces, from
+     SAB's own web assets, Bold + Medium from HSBC Saudi Arabia's site — the
+     same licensed family). Full weight map, no synthetic bold.
+     Inter / IBM Plex remain in the stacks as fallbacks. ── */
+  @font-face{ font-family:'Univers Next'; src:url('../fonts/UniversNext-Light.woff2') format('woff2');
+              font-weight:100 350; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Next'; src:url('../fonts/UniversNext-Regular.woff2') format('woff2');
+              font-weight:351 450; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Next'; src:url('../fonts/UniversNext-Medium.woff2') format('woff2');
+              font-weight:451 650; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Next'; src:url('../fonts/UniversNext-Bold.woff2') format('woff2');
+              font-weight:651 1000; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Arabic'; src:url('../fonts/UniversArabic-Light.woff2') format('woff2');
+              font-weight:100 350; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Arabic'; src:url('../fonts/UniversArabic-Regular.woff2') format('woff2');
+              font-weight:351 450; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Arabic'; src:url('../fonts/UniversArabic-Medium.woff2') format('woff2');
+              font-weight:451 650; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Arabic'; src:url('../fonts/UniversArabic-Bold.woff2') format('woff2');
+              font-weight:651 1000; font-style:normal; font-display:swap; }
+
+  :root{
+    --bg:#fff; --ink:#111; --ink-soft:#5b5b5b; --ink-faint:#e3e3e3;
+    --accent:#db0011; --ease:cubic-bezier(.22,1,.36,1);
+  }
+  @font-face{ font-family:'Amiri'; src:url('../fonts/Amiri-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+  @font-face{ font-family:'Amiri'; src:url('../fonts/Amiri-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:auto; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Univers Next', 'Inter', system-ui, sans-serif; -webkit-font-smoothing:antialiased;
+  }
+  img, video{ max-width:100%; display:block; }
+
+  /* ── loading curtain ── */
+  #curtain{
+    position:fixed; inset:0; background:var(--bg); z-index:1000;
+    display:grid; place-items:center; transition:opacity .6s var(--ease);
+  }
+  #curtain.gone{ opacity:0; pointer-events:none; }
+  #curtain img{ width:150px; }
+
+  /* ── nav ── */
+  .sab-nav{
+    position:fixed; top:0; left:0; right:0; z-index:80;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:.9rem 2rem; background:transparent;
+    transition:padding .45s var(--ease), background .45s var(--ease);
+  }
+  .sab-nav.scrolled{ padding:.4rem 2rem; background:rgba(255,255,255,.92); backdrop-filter:blur(8px); }
+  .nav-logo{
+    height:40px; width:auto;
+    content:normal;   /* official 100-years lock-up */
+  }
+  .sab-nav.scrolled .nav-logo{ height:40px; }
+  html[lang="ar"] .nav-logo{ content:normal; }
+  .sab-nav > a{ padding-block:.25rem; margin-inline-end:2rem; }
+  .nav-right{ display:flex; align-items:center; gap:1.6rem; }
+  .nav-link{
+    font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none; transition:color .3s;
+  }
+  .nav-link:hover{ color:var(--ink); }
+  .lang-switch{ display:flex; align-items:center; gap:.45rem; }
+  .lang-btn{
+    background:none; border:0; cursor:pointer; padding:0;
+    font-size:.72rem; letter-spacing:.14em; color:var(--ink-soft); font-family:inherit;
+  }
+  .lang-btn.active{ color:var(--accent); font-weight:600; }
+  .lang-switch .sep{ color:var(--ink-faint); font-size:.55rem; }
+  /* phones: five inline items would crowd into the logo, so tighten everything
+     and keep each label on one line */
+  @media (max-width:760px){
+    .sab-nav{ padding:.6rem .75rem; gap:.5rem; }
+    .nav-logo{ height:30px; }
+    .sab-nav.scrolled .nav-logo{ height:30px; }   /* constant — no shrink */
+    .nav-right{ gap:.62rem; flex-wrap:nowrap; }
+    .nav-link{ font-size:.53rem; letter-spacing:.05em; white-space:nowrap; }
+    .lang-btn{ font-size:.53rem; letter-spacing:.05em; }
+    .lang-switch{ gap:.3rem; }
+  }
+  @media (max-width:400px){
+    .nav-link{ font-size:.48rem; }
+    .nav-right{ gap:.5rem; }
+    .nav-logo{ height:26px; }
+    /* constant — without this twin the 760px scrolled rule (30px, higher
+       specificity) wins while scrolled and the logo GROWS 26 -> 30px */
+    .sab-nav.scrolled .nav-logo{ height:26px; }
+  }
+
+  /* ── masthead ── */
+  .vhero{ padding:9.5rem 1.5rem 4rem; text-align:center; }
+  .vhero .emblem{
+    width:clamp(112px, 12vw, 165px); aspect-ratio:1; margin:0 auto 1.9rem;
+    background:var(--sab-emblem) center/contain no-repeat;
+    filter:drop-shadow(0 14px 30px rgba(0,0,0,.15));
+  }
+  .vhero h1{
+    font-size:clamp(1.9rem, 4.2vw, 3.3rem); font-weight:600; letter-spacing:-.03em;
+    line-height:1.12; margin:0 0 1rem;
+  }
+  .vhero h1 em{ font-style:normal; color:var(--accent); }
+  .vhero p{
+    max-width:560px; margin:0 auto; color:var(--ink-soft);
+    font-size:clamp(.9rem, 1.2vw, 1.02rem); font-weight:300; line-height:1.65;
+  }
+  .vhero .sadu{
+    width:min(300px, 44vw); height:30px; margin:2.4rem auto 0; color:var(--accent); opacity:.85;
+    -webkit-mask:url('../pattern_row.svg') center/contain no-repeat;
+            mask:url('../pattern_row.svg') center/contain no-repeat;
+    background:currentColor;
+  }
+
+  /* ── vertical timeline ── */
+  .vt{ position:relative; max-width:1180px; margin:0 auto; padding:2rem 1.5rem 6rem; }
+  .vt-spine{
+    position:absolute; top:0; bottom:0; left:50%; width:1px;
+    background:var(--ink-faint); transform:translateX(-50%);
+  }
+  .vt-fill{
+    position:absolute; top:0; left:0; width:100%; height:0;
+    background:var(--accent); transform-origin:top;
+  }
+  .vrow{
+    display:grid; grid-template-columns:1fr 104px 1fr; align-items:center;
+    padding:2.6rem 0; position:relative;
+  }
+  .vmedia{ grid-column:1; }
+  .vnode{ grid-column:2; display:grid; place-items:center; align-self:center; }
+  .vtext{ grid-column:3; padding-inline-start:.5rem; }
+  .vrow:nth-of-type(even) .vmedia{ grid-column:3; }
+  .vrow:nth-of-type(even) .vtext{ grid-column:1; text-align:end; padding-inline:0 .5rem; }
+
+  .vdot{
+    width:11px; height:11px; border-radius:50%;
+    background:var(--bg); border:1.5px solid var(--ink-faint);
+    transition:background .45s var(--ease), border-color .45s var(--ease), transform .45s var(--ease);
+  }
+  .vrow.in .vdot{ background:var(--accent); border-color:var(--accent); transform:scale(1.35); }
+
+  .vyear{
+    font-size:clamp(2.4rem, 4.6vw, 3.9rem); font-weight:200; letter-spacing:-.04em;
+    line-height:1; color:var(--ink); margin:0 0 .5rem;
+  }
+  .vtitle{
+    font-size:clamp(1.15rem, 1.8vw, 1.55rem); font-weight:600; letter-spacing:-.02em;
+    line-height:1.25; margin:0 0 .85rem;
+  }
+  .vdesc{
+    font-size:clamp(.86rem, 1.05vw, .96rem); font-weight:300; line-height:1.72;
+    color:var(--ink-soft); margin:0; max-width:46ch;
+  }
+  .vrow:nth-of-type(even) .vdesc{ margin-inline-start:auto; }
+
+  .vmedia figure{ margin:0; line-height:0; }
+  .vmedia img, .vmedia video{
+    width:100%; height:auto; max-height:42vh; object-fit:contain;
+    background:transparent;
+  }
+  .vmedia.shadow img, .vmedia.shadow video{ filter:drop-shadow(0 20px 40px rgba(0,0,0,.14)); }
+
+  /* reveal choreography — media and text drift in from their own sides */
+  .vmedia, .vtext{
+    opacity:0; transition:opacity .9s var(--ease), transform .9s var(--ease);
+  }
+  .vrow .vmedia{ transform:translateX(-38px); }
+  .vrow .vtext{ transform:translateX(38px); }
+  .vrow:nth-of-type(even) .vmedia{ transform:translateX(38px); }
+  .vrow:nth-of-type(even) .vtext{ transform:translateX(-38px); }
+  .vrow.in .vmedia, .vrow.in .vtext{ opacity:1; transform:none; }
+  .vrow.in .vtext{ transition-delay:.12s; }
+
+  /* the century closes on the 2026 key visual, full width across the spine */
+  .vrow.finale{ grid-template-columns:1fr; padding:5rem 0 1rem; }
+  .vrow.finale .vmedia{ grid-column:1; transform:translateY(30px); }
+  .vrow.finale .vnode, .vrow.finale .vtext{ display:none; }
+  .vrow.finale.in .vmedia{ transform:none; }
+  .vrow.finale img{ max-height:78vh; margin:0 auto; }
+
+  @media (max-width:860px){
+    .vt{ padding:2rem 1.1rem 5rem; }
+    /* the node column is the grid's first column, which mirrors in RTL —
+       the spine must follow it or the line and the dots end up on
+       opposite edges of the screen */
+    /* centre the spine on the 34px node column (container padding 1.1rem + half) */
+    .vt-spine{ left:calc(1.1rem + 17px); }
+    html[dir="rtl"] .vt-spine{ left:auto; right:calc(1.1rem + 17px); }
+    .vrow, .vrow:nth-of-type(even){ grid-template-columns:34px 1fr; padding:2.2rem 0; }
+    .vrow .vmedia, .vrow:nth-of-type(even) .vmedia{ grid-column:2; grid-row:1; transform:translateY(26px); }
+    .vrow .vtext,  .vrow:nth-of-type(even) .vtext{
+      grid-column:2; grid-row:2; text-align:start; padding-inline:0; transform:translateY(26px);
+      margin-top:1.1rem;
+    }
+    .vnode{ grid-column:1; grid-row:1; align-self:start; margin-top:.4rem; }
+    .vrow.in .vmedia, .vrow.in .vtext{ transform:none; }
+    .vmedia img, .vmedia video{ max-height:40vh; }
+    .vrow.finale{ grid-template-columns:1fr; }
+    .vrow.finale .vmedia{ grid-column:1; }
+  }
+
+  /* ── Arabic typography from the brand kit ── */
+  html[lang="ar"] .vhero h1,
+  html[lang="ar"] .vtitle{
+    font-family:'Univers Arabic','Amiri',serif; font-weight:400; line-height:1.5;
+  }
+  html[lang="ar"] .vhero h1{ font-size:clamp(2rem, 4.6vw, 3.5rem); }
+  html[lang="ar"] .vtitle{ font-size:clamp(1.3rem, 2vw, 1.75rem); }
+  html[lang="ar"] .vhero p,
+  html[lang="ar"] .vdesc,
+  html[lang="ar"] .nav-link,
+  html[lang="ar"] .site-footer{ font-family:'Amiri',serif; }
+  html[lang="ar"] .vyear{ font-family:'Univers Next', 'Inter',sans-serif; }
+
+  @media (prefers-reduced-motion: reduce){
+    .vmedia, .vtext{ transform:none !important; transition:opacity .5s linear !important; }
+  }
+
+/* ───────── LEADERSHIP SECTION ───────── */
+  .leadership-section{
+    padding:7rem 0 9rem;
+    background:#fafafa;
+    border-top:1px solid var(--ink-faint);
+    border-bottom:1px solid var(--ink-faint);
+  }
+.leadership-header{
+    text-align:center;
+    margin-bottom:5rem;
+    max-width:680px; margin-left:auto; margin-right:auto;
+    padding:0 1.5rem;
+    opacity:0; transform:translateY(20px);
+    transition:opacity .9s var(--ease), transform .9s var(--ease);
+  }
+.leadership-header.in-view{ opacity:1; transform:none; }
+/* Section header — editorial italic with a thin red bar above */
+  .leadership-header .eyebrow{
+    color:var(--ink);
+    font-size:1.125rem;
+    font-weight:400;
+    font-style:italic;
+    letter-spacing:0;
+    text-transform:none;
+    margin:0;
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1.25rem;
+  }
+.leadership-header .eyebrow::before{
+    content:"";
+    width:36px;
+    height:1px;
+    background:var(--accent);
+    display:block;
+    order:-1;          /* bar appears ABOVE the text */
+  }
+.leadership-header h2{
+    font-size:clamp(24px, 2.6vw, 36px);
+    font-weight:300;
+    line-height:1.25;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+    margin:0;
+  }
+.leader-block{
+    max-width:1080px;
+    margin:0 auto 5rem;
+    padding:0 2rem;
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:3.5rem;
+    align-items:start;
+    opacity:0; transform:translateY(28px);
+    transition:opacity 1s var(--ease), transform 1s var(--ease);
+  }
+.leader-block:last-child{ margin-bottom:0; }
+.leader-block.in-view{ opacity:1; transform:none; }
+.leader-block.reverse{ grid-template-columns:1fr 280px; }
+.leader-block.reverse .leader-side{ order:2; }
+.leader-block.reverse .leader-text{ order:1; }
+.leader-portrait{
+    width:100%;
+    aspect-ratio:3/4;
+    object-fit:cover;
+    display:block;
+    filter:grayscale(0.15) contrast(1.02);
+  }
+.leader-role{
+    margin-top:1.25rem;
+    font-size:.625rem;
+    font-weight:600;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex; align-items:center; gap:.5rem;
+  }
+.leader-role::before{
+    content:""; width:8px; height:8px; background:var(--accent); display:block;
+  }
+.leader-quote{
+    position:relative;
+    padding-left:1.75rem;
+    border-left:1px solid var(--ink-faint);
+  }
+html[dir="rtl"] .leader-quote{
+    padding-left:0; padding-right:1.75rem;
+    border-left:none; border-right:1px solid var(--ink-faint);
+  }
+.leader-quote p{
+    font-size:1.0625rem;
+    line-height:1.85;
+    font-weight:300;
+    color:var(--ink);
+    margin:0 0 1.25rem;
+  }
+.leader-quote p:last-child{ margin-bottom:0; }
+/* RTL adjustments for leader block: portrait stays on the right (start side in RTL) */
+  html[dir="rtl"] .leader-block{ grid-template-columns:1fr 280px; }
+html[dir="rtl"] .leader-block.reverse{ grid-template-columns:280px 1fr; }
+@media (max-width:768px){
+  .leadership-section{ padding:5rem 0 6rem; }
+  .leadership-header{ margin-bottom:3rem; }
+  .leader-block,
+    .leader-block.reverse,
+    html[dir="rtl"] .leader-block,
+    html[dir="rtl"] .leader-block.reverse{
+      grid-template-columns:1fr;
+      gap:2rem;
+      margin-bottom:3.5rem;
+    }
+  .leader-side{ max-width:240px; margin:0 auto; }
+  .leader-block.reverse .leader-side,
+    .leader-block.reverse .leader-text{ order:initial; }
+}
+/* ───────── SMOOTHER FADE-IN (intro + leadership) ───────── */
+  .intro-statement,
+  .leadership-header{
+    opacity:0;
+    transform:translateY(36px);
+    transition:opacity 1.6s cubic-bezier(.16, 1, .3, 1),
+               transform 1.6s cubic-bezier(.16, 1, .3, 1);
+    will-change:opacity, transform;
+  }
+.intro-statement.in-view,
+  .leadership-header.in-view{
+    opacity:1; transform:none;
+  }
+/* Leader block — fade the portrait and quote separately with a stagger */
+  .leader-block{
+    opacity:1; transform:none;        /* parent stays solid; children animate */
+    transition:none;
+  }
+.leader-block .leader-side,
+  .leader-block .leader-text{
+    opacity:0;
+    transform:translateY(36px);
+    transition:opacity 1.6s cubic-bezier(.16, 1, .3, 1),
+               transform 1.6s cubic-bezier(.16, 1, .3, 1);
+    will-change:opacity, transform;
+  }
+.leader-block .leader-side{ transition-delay:80ms; }
+.leader-block .leader-text{ transition-delay:300ms; }
+.leader-block.in-view .leader-side,
+  .leader-block.in-view .leader-text{
+    opacity:1; transform:none;
+  }
+/* Paragraphs inside the quote stagger softly */
+  .leader-block .leader-quote p{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 1.4s cubic-bezier(.16, 1, .3, 1),
+               transform 1.4s cubic-bezier(.16, 1, .3, 1);
+  }
+.leader-block.in-view .leader-quote p{
+    opacity:1; transform:none;
+  }
+.leader-block.in-view .leader-quote p:nth-child(1){ transition-delay:450ms; }
+.leader-block.in-view .leader-quote p:nth-child(2){ transition-delay:600ms; }
+.leader-block.in-view .leader-quote p:nth-child(3){ transition-delay:750ms; }
+.leader-block.in-view .leader-quote p:nth-child(4){ transition-delay:900ms; }
+/* Role label — editorial byline style */
+  .leader-quote .leader-role{
+    margin:0 0 1.75rem;
+    font-size:.8125rem;
+    font-weight:500;
+    letter-spacing:.005em;
+    text-transform:none;
+    color:var(--ink-soft);
+    display:flex; align-items:center; gap:.875rem;
+    font-style:italic;
+  }
+.leader-quote .leader-role::before{
+    content:"";
+    width:28px; height:1px;
+    background:var(--accent);
+    display:block;
+    flex-shrink:0;
+  }
+/* Tighten portrait column now that the role label is gone from below it */
+  .leader-side{ padding-top:.25rem; }
+@media (max-width:768px){
+  .leader-quote .leader-role{ font-size:.75rem; gap:.625rem; }
+  .leader-quote .leader-role::before{ width:20px; }
+}
+/* ── leadership: editorial chapter treatment ── */
+  .leader-pull{
+    font-size:clamp(21px, 2.3vw, 31px);
+    font-weight:300; line-height:1.42; letter-spacing:-0.02em;
+    color:var(--ink); margin:0 0 2.25rem;
+    position:relative; padding-left:1.75rem;
+    opacity:0; transform:translateY(22px);
+    transition:opacity 1s var(--ease) .25s, transform 1s var(--ease) .25s;
+  }
+.leader-pull::before{
+    content:""; position:absolute; left:0; top:.32em; bottom:.32em;
+    width:3px; background:var(--accent);
+  }
+html[dir="rtl"] .leader-pull{ padding-left:0; padding-right:1.75rem; letter-spacing:0; line-height:1.6; }
+html[dir="rtl"] .leader-pull::before{ left:auto; right:0; }
+.leader-block.in-view .leader-pull{ opacity:1; transform:none; }
+.leader-quote{ border-left:none; padding-left:0; }
+html[dir="rtl"] .leader-quote{ border-right:none; padding-right:0; }
+.leader-quote .leader-role{ margin-top:0; margin-bottom:1.75rem; }
+.leader-quote p{
+    font-size:1rem; line-height:1.9; color:var(--ink-soft);
+    opacity:0; transform:translateY(18px);
+    transition:opacity 1.1s var(--ease), transform 1.1s var(--ease);
+  }
+.leader-quote p:first-of-type{
+    border-top:1px solid var(--ink-faint);
+    padding-top:1.75rem;
+    font-size:1.125rem; color:var(--ink);
+  }
+.leader-quote p:nth-of-type(1){ transition-delay:.40s; }
+.leader-quote p:nth-of-type(2){ transition-delay:.52s; }
+.leader-quote p:nth-of-type(3){ transition-delay:.64s; }
+.leader-quote p:nth-of-type(4){ transition-delay:.76s; }
+.leader-block.in-view .leader-quote p{ opacity:1; transform:none; }
+.leader-side{ position:relative; z-index:0; }
+.leader-side::after{
+    content:""; position:absolute; inset:0;
+    transform:translate(14px,14px);
+    border:1px solid rgba(219,0,17,.30);
+    pointer-events:none; z-index:-1;
+  }
+html[dir="rtl"] .leader-side::after{ transform:translate(-14px,14px); }
+.leader-portrait{
+    filter:grayscale(1) contrast(1.04);
+    clip-path:inset(0 100% 0 0);
+    transition:clip-path 1.2s var(--ease-io) .15s, filter .8s var(--ease);
+  }
+html[dir="rtl"] .leader-portrait{ clip-path:inset(0 0 0 100%); }
+.leader-block.in-view .leader-portrait{ clip-path:inset(0 0 0 0); }
+.leader-portrait:hover{ filter:grayscale(0) contrast(1); }
+/* new display text uses the Arabic face in AR mode (numerals stay Inter elsewhere) */
+  html[lang="ar"] .hero .hero-kicker,
+  html[lang="ar"] .leader-pull{
+    font-family:'Univers Arabic', 'Univers Arabic', 'IBM Plex Sans Arabic', 'Univers Next', 'Univers Next', 'Inter', system-ui, sans-serif;
+    letter-spacing:0;
+  }
+@media (prefers-reduced-motion: reduce){
+  .hero .hero-kicker, .hero h1 .hl-in, .hero .hero-rule, .hero .bg-num, .hero .scroll-cue,
+    .leader-pull, .leader-quote p, .leader-portrait{ transition:none !important; }
+  .hero .hero-kicker, .hero .scroll-cue, .leader-pull, .leader-quote p{ opacity:1 !important; transform:none !important; }
+  .leader-portrait{ clip-path:none !important; }
+}
+/* Arabic DISPLAY — the brand's Naskh headline face */
+  html[lang="ar"] .hero h1,
+  html[lang="ar"] .item-title,
+  html[lang="ar"] .item-title b,
+  html[lang="ar"] .outro h2,
+  html[lang="ar"] .leadership-header h2,
+  html[lang="ar"] .leader-block h3,
+  html[lang="ar"] .intro h2,
+  html[lang="ar"] .lead-pull{
+    font-family:'Univers Arabic', 'Amiri', serif !important;
+    font-weight:400 !important;
+    line-height:1.5;
+  }
+/* Arabic TEXT — Amiri carries body copy, nav and UI chrome */
+  html[lang="ar"] .item-desc,
+  html[lang="ar"] .intro p,
+  html[lang="ar"] .outro p,
+  html[lang="ar"] .leader-block p,
+  html[lang="ar"] .nav-link,
+  html[lang="ar"] .eyebrow,
+  html[lang="ar"] .site-footer,
+  html[lang="ar"] .milestone-label{
+    font-family:'Amiri', 'Univers Arabic', 'Univers Arabic', 'IBM Plex Sans Arabic', serif !important;
+  }
+/* Leadership is a page of its own — always light, even from a dark timeline */
+  .lead-overlay{ color-scheme:light; }
+body.dark .lead-overlay{
+    --bg:#fff; --ink:#1c1c1c; --ink-soft:#4a4a4a; --ink-dim:#767676;
+    --ink-faint:#e5e5e5; --ink-line:#d9d9d9;
+    background:#fafafa; color:#1c1c1c;
+  }
+.lead-overlay{
+    position:fixed; inset:0; z-index:3000; background:#fafafa;
+    overflow-y:auto; overflow-x:hidden;
+    opacity:0; transition:opacity .35s var(--ease);
+  }
+.lead-overlay.in{ opacity:1; }
+.lead-chrome{
+    display:flex; justify-content:flex-end;
+    max-width:1140px; margin:0 auto; padding:1.5rem 2rem 0;
+  }
+.lead-close{
+    width:42px; height:42px; flex:0 0 42px; border-radius:50%;
+    border:1px solid var(--ink-line); background:#fff; color:var(--ink);
+    font-size:16px; line-height:0; cursor:pointer;
+    transition:border-color .3s var(--ease), color .3s var(--ease), transform .3s var(--ease);
+  }
+.lead-close:hover{ border-color:var(--accent); color:var(--accent); transform:rotate(90deg); }
+.lead-overlay .leadership-section{
+    border-top:0; border-bottom:0; background:transparent;
+    padding-top:1.5rem;
+  }
+
+  /* leadership opens as its own page over the timeline */
+  .lead-overlay{
+    position:fixed; inset:0; z-index:120; background:#fafafa;
+    overflow-y:auto; overflow-x:hidden; opacity:0;
+    transition:opacity .34s var(--ease);
+  }
+  .lead-overlay.in{ opacity:1; }
+  .lead-chrome{ max-width:1140px; margin:0 auto; padding:1.4rem 2rem 0; text-align:end; }
+  .lead-close{
+    background:none; border:0; cursor:pointer; font-size:1.35rem;
+    line-height:1; color:var(--ink-soft); padding:.3rem;
+  }
+  .lead-close:hover{ color:var(--ink); }
+  .lead-overlay .leadership-section{ padding-top:1rem; }
+  /* the section animates in on its reveal classes — arm them when opened */
+  .lead-overlay .leadership-header,
+  .lead-overlay .leader-block{ opacity:1; }
+
+
+  /* ── site footer (compact) ── */
+  .site-footer{ background:#0a0a0a; padding:2rem 2rem 1.25rem; }
+  .site-footer .f-inner{ max-width:1080px; margin:0 auto; }
+  .site-footer .f-top{ display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; }
+  .footer-logo{ height:28px; width:auto; display:block; }
+  .f-social{ display:flex; gap:.5rem; }
+  .f-social a{
+    width:32px; height:32px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.22);
+    display:grid; place-items:center; color:#fff;
+    transition:background .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
+  }
+  .f-social a:hover{ background:var(--accent); border-color:var(--accent); transform:translateY(-2px); }
+  .f-social svg{ width:13px; height:13px; fill:currentColor; display:block; }
+  .f-legal{
+    display:flex; flex-wrap:wrap; gap:.4rem 1.6rem; margin:1.1rem 0 .2rem;
+  }
+  .f-legal a{
+    color:rgba(255,255,255,.72); text-decoration:none;
+    font-size:.68rem; letter-spacing:.08em;
+    transition:color .3s;
+  }
+  .f-legal a:hover{ color:#fff; }
+  /* statutory entity details, as published by SAB */
+  .f-entity{
+    margin:1.1rem 0 0; max-width:none;
+    font-size:.66rem; line-height:1.85; letter-spacing:.005em;
+    color:rgba(255,255,255,.52);
+  }
+  html[lang="ar"] .f-entity{ font-size:.72rem; line-height:2; letter-spacing:0; }
+  @media (max-width:768px){ .f-entity{ font-size:.62rem; line-height:1.8; } }
+  html[lang="ar"] .f-legal a{ letter-spacing:0; }
+  .site-footer .f-rule{ height:1px; background:rgba(255,255,255,.14); margin:1.25rem 0 .9rem; }
+  .site-footer .f-meta{
+    display:flex; gap:.75rem 2rem; flex-wrap:wrap; justify-content:space-between;
+    font-size:.5625rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+    color:rgba(255,255,255,.5);
+  }
+  html[lang="ar"] .site-footer .f-meta{
+    letter-spacing:.02em; font-size:.6875rem;
+    font-family:'Univers Arabic', 'IBM Plex Sans Arabic', 'Univers Next', 'Inter', system-ui, sans-serif;
+  }
+  @media (max-width:768px){
+    .site-footer{ padding:1.75rem 1.5rem 1rem; }
+    .site-footer .f-top{ flex-direction:column; align-items:center; gap:1rem; }
+    .site-footer .f-meta{ justify-content:center; text-align:center; }
+    .footer-logo{ height:24px; }
+  }
+

@@ -1,0 +1,32 @@
+name: Publish WordPress updates
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sab-wordpress-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check PHP and JavaScript syntax
+        run: |
+          find theme plugins -name '*.php' -print0 | xargs -0 -n 1 php -l
+          for script in theme/sab/assets/js/*.js; do node --check "$script"; done
+      - name: Build versioned WordPress packages
+        id: package
+        run: python3 tools/release.py "${{ github.run_number }}" "$GITHUB_OUTPUT"
+      - name: Publish release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.package.outputs.version }}
+        run: |
+          if gh release view "v$VERSION" >/dev/null 2>&1; then
+            gh release upload "v$VERSION" dist/sab-theme.zip dist/sab-content.zip dist/sab-wordpress-delivery.zip --clobber
+          else
+            gh release create "v$VERSION" dist/sab-theme.zip dist/sab-content.zip dist/sab-wordpress-delivery.zip --target "$GITHUB_SHA" --title "SAB $VERSION" --generate-notes --latest
+          fi

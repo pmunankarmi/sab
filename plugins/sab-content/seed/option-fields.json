@@ -1,0 +1,263 @@
+[
+  {
+    "key": "field_sab_local_brand",
+    "name": "sab_local_brand",
+    "label": "Language-specific branding",
+    "type": "tab"
+  },
+  {
+    "key": "field_sab_language_logo",
+    "name": "sab_language_logo",
+    "label": "Logo override for this language",
+    "type": "image",
+    "return_format": "id",
+    "preview_size": "medium",
+    "library": "all"
+  },
+  {
+    "key": "field_sab_language_dark_logo",
+    "name": "sab_language_dark_logo",
+    "label": "Dark-background logo override",
+    "type": "image",
+    "return_format": "id",
+    "preview_size": "medium",
+    "library": "all"
+  },
+  {
+    "key": "field_sab_footer_logo",
+    "name": "sab_footer_logo",
+    "label": "Footer logo",
+    "type": "image",
+    "return_format": "id",
+    "preview_size": "medium",
+    "library": "all"
+  },
+  {
+    "key": "field_sab_local_contact",
+    "name": "sab_local_contact",
+    "label": "Contact and footer",
+    "type": "tab"
+  },
+  {
+    "key": "field_sab_address",
+    "name": "sab_address",
+    "label": "Address",
+    "type": "textarea"
+  },
+  {
+    "key": "field_sab_contact_label",
+    "name": "sab_contact_label",
+    "label": "Contact accessibility label",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_established",
+    "name": "sab_established",
+    "label": "Establishment line",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_copyright",
+    "name": "sab_copyright",
+    "label": "Copyright text",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_legal_text",
+    "name": "sab_legal_text",
+    "label": "Regulatory text",
+    "type": "textarea"
+  },
+  {
+    "key": "field_sab_website_label",
+    "name": "sab_website_label",
+    "label": "Website link label",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_ui_tab",
+    "name": "sab_ui_tab",
+    "label": "Interface and accessibility labels",
+    "type": "tab"
+  },
+  {
+    "key": "field_sab_label_hero_kicker",
+    "name": "sab_label_hero_kicker",
+    "label": "Hero Kicker",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_scrub_end",
+    "name": "sab_label_scrub_end",
+    "label": "Scrub End",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_span_label",
+    "name": "sab_label_span_label",
+    "label": "Span Label",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_scroll_cue",
+    "name": "sab_label_scroll_cue",
+    "label": "Scroll Cue",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_load_label",
+    "name": "sab_label_load_label",
+    "label": "Load Label",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_milestone_label",
+    "name": "sab_label_milestone_label",
+    "label": "Milestone Label",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_dark_label",
+    "name": "sab_label_dark_label",
+    "label": "Dark Label",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_light_label",
+    "name": "sab_label_light_label",
+    "label": "Light Label",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_film_sound_on",
+    "name": "sab_label_film_sound_on",
+    "label": "Film Sound On",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_film_sound_off",
+    "name": "sab_label_film_sound_off",
+    "label": "Film Sound Off",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_film_skip",
+    "name": "sab_label_film_skip",
+    "label": "Film Skip",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_film_cue",
+    "name": "sab_label_film_cue",
+    "label": "Film Cue",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_nav_heritage",
+    "name": "sab_label_nav_heritage",
+    "label": "Nav Heritage",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_outro_eyebrow",
+    "name": "sab_label_outro_eyebrow",
+    "label": "Outro Eyebrow",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_outro_meta_1",
+    "name": "sab_label_outro_meta_1",
+    "label": "Outro Meta 1",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_outro_meta_3",
+    "name": "sab_label_outro_meta_3",
+    "label": "Outro Meta 3",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_leadership_eyebrow",
+    "name": "sab_label_leadership_eyebrow",
+    "label": "Leadership Eyebrow",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_nav_cinematic",
+    "name": "sab_label_nav_cinematic",
+    "label": "Nav Cinematic",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_play_century",
+    "name": "sab_label_play_century",
+    "label": "Play Century",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_pause_century",
+    "name": "sab_label_pause_century",
+    "label": "Pause Century",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_previous",
+    "name": "sab_label_previous",
+    "label": "Previous",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_next",
+    "name": "sab_label_next",
+    "label": "Next",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_close",
+    "name": "sab_label_close",
+    "label": "Close",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_timeline_nav",
+    "name": "sab_label_timeline_nav",
+    "label": "Timeline Nav",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_toggle_navigation",
+    "name": "sab_label_toggle_navigation",
+    "label": "Toggle Navigation",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_hero_media_label",
+    "name": "sab_label_hero_media_label",
+    "label": "Hero Media Label",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_film_label",
+    "name": "sab_label_film_label",
+    "label": "Film Label",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_skip_content",
+    "name": "sab_label_skip_content",
+    "label": "Skip Content",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_leadership_title",
+    "name": "sab_label_leadership_title",
+    "label": "Leadership Title",
+    "type": "text"
+  },
+  {
+    "key": "field_sab_label_language_name",
+    "name": "sab_label_language_name",
+    "label": "Language Name",
+    "type": "text"
+  }
+]

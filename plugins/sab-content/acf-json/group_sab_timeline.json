@@ -1,0 +1,78 @@
+{
+  "key": "group_sab_timeline",
+  "title": "SAB page content",
+  "fields": [
+    {
+      "key": "field_sab_hero_title",
+      "name": "sab_hero_title",
+      "label": "Formatted hero heading",
+      "type": "textarea",
+      "instructions": "Optional formatted heading. Supports em, strong and br. Native page title remains the document title."
+    },
+    {
+      "key": "field_sab_hero_video",
+      "name": "sab_hero_video",
+      "label": "Hero video",
+      "type": "file",
+      "return_format": "id",
+      "mime_types": "mp4,webm"
+    },
+    {
+      "key": "field_sab_hero_poster",
+      "name": "sab_hero_poster",
+      "label": "Hero poster",
+      "type": "image",
+      "return_format": "id",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_sab_film",
+      "name": "sab_film",
+      "label": "Centenary film",
+      "type": "file",
+      "return_format": "id",
+      "mime_types": "mp4,webm"
+    },
+    {
+      "key": "field_sab_film_poster",
+      "name": "sab_film_poster",
+      "label": "Film poster",
+      "type": "image",
+      "return_format": "id",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_sab_intro_title",
+      "name": "sab_intro_title",
+      "label": "Introduction heading",
+      "type": "textarea"
+    },
+    {
+      "key": "field_sab_outro_title",
+      "name": "sab_outro_title",
+      "label": "Closing heading",
+      "type": "textarea"
+    },
+    {
+      "key": "field_sab_outro_body",
+      "name": "sab_outro_body",
+      "label": "Closing text",
+      "type": "textarea"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-templates/timeline.php"
+      }
+    ]
+  ],
+  "active": true,
+  "style": "default",
+  "position": "normal",
+  "show_in_rest": false
+}

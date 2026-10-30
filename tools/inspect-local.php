@@ -1,0 +1,3 @@
+<?php
+print_r( array( 'helper' => function_exists('polylang_slug_unique_slug_in_language'), 'helper_filter' => has_filter('wp_unique_post_slug','polylang_slug_unique_slug_in_language'), 'languages' => pll_languages_list(), 'options' => array_intersect_key(get_option('polylang'),array_flip(['force_lang','hide_default','default_lang','nav_menus','post_types'])), 'menus' => get_theme_mod('nav_menu_locations'), 'primary_logo' => get_theme_mod('custom_logo') ) );
+foreach(get_posts(['post_type'=>'page','posts_per_page'=>-1,'suppress_filters'=>true,'lang'=>'']) as $p) echo $p->ID.' '.$p->post_name.' '.pll_get_post_language($p->ID).' '.get_permalink($p->ID)."\n";

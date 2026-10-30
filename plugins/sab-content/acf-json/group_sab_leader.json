@@ -1,0 +1,32 @@
+{
+  "key": "group_sab_leader",
+  "title": "Leadership details",
+  "fields": [
+    {
+      "key": "field_sab_pull_quote",
+      "name": "sab_pull_quote",
+      "label": "Pull quote",
+      "type": "textarea",
+      "rows": 3
+    },
+    {
+      "key": "field_sab_role",
+      "name": "sab_role",
+      "label": "Role",
+      "type": "text"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "sab_leader"
+      }
+    ]
+  ],
+  "active": true,
+  "style": "default",
+  "position": "normal",
+  "show_in_rest": false
+}

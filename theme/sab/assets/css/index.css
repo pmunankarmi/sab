@@ -1,0 +1,1838 @@
+
+  /* ── Univers Next / Univers Arabic (the client's licensed brand faces, from
+     SAB's own web assets, Bold + Medium from HSBC Saudi Arabia's site — the
+     same licensed family). Full weight map, no synthetic bold.
+     Inter / IBM Plex remain in the stacks as fallbacks. ── */
+  @font-face{ font-family:'Univers Next'; src:url('../fonts/UniversNext-Light.woff2') format('woff2');
+              font-weight:100 350; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Next'; src:url('../fonts/UniversNext-Regular.woff2') format('woff2');
+              font-weight:351 450; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Next'; src:url('../fonts/UniversNext-Medium.woff2') format('woff2');
+              font-weight:451 650; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Next'; src:url('../fonts/UniversNext-Bold.woff2') format('woff2');
+              font-weight:651 1000; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Arabic'; src:url('../fonts/UniversArabic-Light.woff2') format('woff2');
+              font-weight:100 350; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Arabic'; src:url('../fonts/UniversArabic-Regular.woff2') format('woff2');
+              font-weight:351 450; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Arabic'; src:url('../fonts/UniversArabic-Medium.woff2') format('woff2');
+              font-weight:451 650; font-style:normal; font-display:swap; }
+  @font-face{ font-family:'Univers Arabic'; src:url('../fonts/UniversArabic-Bold.woff2') format('woff2');
+              font-weight:651 1000; font-style:normal; font-display:swap; }
+
+  /* ───── HSBC-style brand variables ───── */
+  :root, [data-bs-theme="light"]{
+    --bs-body-bg:           #ffffff;
+    --bs-body-color:        #1c1c1c;
+    --bs-body-font-family:  'Univers Next', 'Inter', system-ui, -apple-system, sans-serif;
+    --bs-body-font-weight:  400;
+    --bs-primary:           #db0011;
+    --bs-primary-rgb:       219,0,17;
+    --bs-border-color:      #e5e5e5;
+    --bs-link-color:        #1c1c1c;
+    --bs-link-hover-color:  #db0011;
+  }
+
+  :root{
+    --bg:         #ffffff;
+    --ink:        #1c1c1c;          /* primary text */
+    --ink-soft:   #4a4a4a;          /* secondary text */
+    --ink-dim:    #767676;          /* tertiary text / meta */
+    --ink-faint:  #e5e5e5;          /* lines, borders */
+    --ink-line:   #d9d9d9;
+    --accent:     #db0011;          /* HSBC Red */
+    --accent-dk:  #b00010;
+    --ease:       cubic-bezier(.23,1,.32,1);
+    --ease-io:    cubic-bezier(.77,0,.175,1);
+  }
+
+  *{ font-family: var(--bs-body-font-family); }
+
+  body{
+    letter-spacing:-0.005em;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    background:var(--bg);
+    color:var(--ink);
+  }
+
+  /* ───── NAVBAR ───── */
+  .sab-nav{
+    background:rgba(255,255,255,.92) !important;
+    backdrop-filter:saturate(180%) blur(10px);
+    -webkit-backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--ink-faint);
+    padding:1rem 0;
+  }
+  .sab-nav .navbar-brand{
+    font-weight:700;
+    font-size:1.125rem;
+    letter-spacing:.15em;
+    color:var(--ink);
+  }
+  /* HSBC-style mini square mark next to wordmark */
+  .sab-nav .brand-mark{
+    display:inline-block;
+    width:14px; height:14px;
+    background:var(--accent);
+    margin-right:.6rem;
+    vertical-align:-2px;
+  }
+  .sab-nav .nav-link{
+    font-size:.75rem;
+    font-weight:500;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink) !important;
+    opacity:.75;
+    transition:opacity .2s var(--ease), color .2s var(--ease);
+    margin:0 1rem;
+  }
+  .sab-nav .nav-link:hover{ opacity:1; color:var(--accent) !important; }
+  .sab-nav .navbar-toggler{
+    border:1px solid var(--ink-line);
+    padding:.4rem .6rem;
+  }
+  .sab-nav .navbar-toggler:focus{ box-shadow:none; }
+
+  /* ───── HERO ───── */
+  .hero{ min-height:100vh; position:relative; overflow:hidden; }
+  .hero .bg-num{
+    position:absolute;
+    font-weight:100;
+    font-size:clamp(180px, 34vw, 620px);
+    line-height:.85; letter-spacing:-0.07em;
+    color:#f5f5f5;
+    user-select:none; pointer-events:none;
+    top:50%; left:50%; transform:translate(-50%,-50%);
+    white-space:nowrap;
+    will-change:transform, opacity;
+  }
+  .hero .eyebrow{
+    font-size:.6875rem; font-weight:600;
+    letter-spacing:.28em;
+    text-transform:uppercase; color:var(--accent);
+    margin-bottom:2rem;
+    display:flex; align-items:center; gap:.625rem;
+    justify-content:center;
+  }
+  .hero .eyebrow::before{
+    content:""; display:inline-block;
+    width:10px; height:10px;
+    background:var(--accent);
+  }
+  .hero h1{
+    font-weight:700;
+    font-size:clamp(28px, 4.8vw, 64px);
+    line-height:1.02;
+    letter-spacing:-0.03em;
+    color:var(--ink);
+  }
+  .hero h1 em{ font-style:normal; color:var(--accent); }
+  .hero .sub{
+    font-weight:300;
+    font-size:1.125rem;
+    color:var(--ink-soft);
+    max-width:560px;
+    margin:2rem auto 0;
+    line-height:1.55;
+  }
+  .hero .lede{
+    font-size:.6875rem; font-weight:500; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--ink-dim);
+    max-width:280px; line-height:1.7;
+  }
+  .hero .frame-info{
+    font-size:.6875rem; font-weight:500; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--ink-dim);
+  }
+  .hero .frame-info .num{
+    font-weight:200; font-size:2.25rem;
+    letter-spacing:-0.02em;
+    color:var(--ink); text-transform:none;
+    display:block; margin-top:.375rem;
+  }
+  .scroll-cue{
+    font-size:.625rem; font-weight:500; letter-spacing:.3em;
+    text-transform:uppercase; color:var(--ink-dim);
+  }
+  .scroll-cue::after{
+    content:""; display:block; width:1px; height:50px; margin:14px auto 0;
+    background:linear-gradient(180deg, var(--ink-dim), transparent);
+    animation:cue 2.4s infinite var(--ease-io);
+  }
+  @keyframes cue{
+    0%   { transform:scaleY(0); transform-origin:top;    }
+    50%  { transform:scaleY(1); transform-origin:top;    }
+    51%  { transform:scaleY(1); transform-origin:bottom; }
+    100% { transform:scaleY(0); transform-origin:bottom; }
+  }
+
+  /* ───── TIMELINE STAGE ───── */
+  .timeline{
+    position:relative;
+    height:calc(43 * 100vh + 100vh);
+  }
+  .stage{
+    position:sticky; top:0;
+    height:100vh; width:100%;
+    overflow:hidden;
+    perspective:1400px;
+    perspective-origin:50% 50%;
+    transform-style:preserve-3d;
+    background:var(--bg);
+  }
+
+  /* faint ambient year watermark */
+  .era-year{
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%, -50%);
+    font-weight:100;
+    font-size:clamp(220px, 42vw, 680px);
+    line-height:.85; letter-spacing:-0.07em;
+    color:#f5f5f5;
+    user-select:none; pointer-events:none; z-index:1;
+    will-change:transform, opacity; white-space:nowrap;
+  }
+
+  /* HUD — top-right milestone counter */
+  .index-rail{
+    position:absolute; top:104px; right:36px; z-index:8;
+    font-size:.6875rem; font-weight:500;
+    letter-spacing:.18em; color:var(--ink-dim); text-transform:uppercase;
+    text-align:right;
+  }
+  .index-rail .total{
+    font-weight:200; font-size:2.25rem;
+    color:var(--ink); letter-spacing:-0.02em;
+    text-transform:none; margin-top:.375rem; display:block;
+  }
+  .index-rail .total b{ color:var(--accent); font-weight:400; }
+
+  /* Vertical year rail — right side, centered vertically */
+  .year-rail{
+    position:absolute;
+    top:50%; right:40px;
+    transform:translateY(-50%);
+    height:58vh;
+    display:flex;
+    align-items:center;
+    gap:1.5rem;
+    z-index:8;
+    pointer-events:none;
+  }
+  .year-rail .now{
+    font-weight:200;
+    font-size:2.5rem;
+    line-height:1;
+    color:var(--ink);
+    letter-spacing:-0.04em;
+    transition:color .4s var(--ease);
+    text-align:right;
+  }
+  .year-rail .now.flash{ color:var(--accent); }
+  .year-rail .track{
+    position:relative;
+    width:1px;
+    height:100%;
+    background:var(--ink-faint);
+  }
+  .year-rail .track-fill{
+    position:absolute;
+    top:0; left:0;
+    width:1px;
+    background:var(--accent);
+    height:var(--p, 0%);
+    transition:height .25s linear;
+  }
+  .year-rail .track-dot{
+    position:absolute;
+    top:var(--p, 0%);
+    left:-3px;
+    width:7px; height:7px;
+    background:var(--accent);
+    border-radius:50%;
+    transform:translateY(-50%);
+    transition:top .25s linear;
+  }
+
+  .dot-rail{
+    position:absolute; left:50%; bottom:36px;
+    transform:translateX(-50%);
+    z-index:8;
+    max-width:82vw;
+    flex-wrap:wrap; justify-content:center;
+  }
+  .dot-rail i{
+    width:10px; height:2px; background:var(--ink-faint);
+    transition:background .3s var(--ease), height .3s var(--ease);
+    flex-shrink:0;
+  }
+  .dot-rail i.passed{ background:var(--ink-line); }
+  .dot-rail i.active{ background:var(--accent); height:3px; }
+
+  /* ───── ITEMS — freestyle compositions, 5 cycling layouts ───── */
+  .items-wrap{
+    position:absolute; inset:0;
+    transform-style:preserve-3d; z-index:5;
+  }
+  .item{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    opacity:0; pointer-events:none;
+    will-change:transform, opacity, left;
+  }
+
+  /* ───── 5 layout variants — left position is now driven by JS so every item starts at center ───── */
+
+  /* L1 — stacked, drifts to LEFT */
+  .item.layout-stack-left{
+    width:min(520px, 84vw);
+    text-align:left;
+  }
+  /* L2 — pair (year LEFT, text RIGHT), stays centered */
+  .item.layout-pair-left{
+    width:min(960px, 92vw);
+    text-align:left;
+  }
+  /* L3 — stacked, stays centered */
+  .item.layout-stack-center{
+    width:min(620px, 88vw);
+    text-align:center;
+  }
+  /* L4 — pair (text LEFT, year RIGHT), stays centered, text right-aligned */
+  .item.layout-pair-right{
+    width:min(960px, 92vw);
+    text-align:right;
+  }
+  .item.layout-pair-right .item-meta{ justify-content:flex-end; }
+  .item.layout-pair-right .item-desc{ margin-left:auto; margin-right:0; }
+  /* L5 — stacked, drifts to RIGHT */
+  .item.layout-stack-right{
+    width:min(520px, 84vw);
+    text-align:right;
+  }
+
+  /* meta line */
+  .item-meta{
+    font-size:.625rem;
+    font-weight:600;
+    letter-spacing:.22em;
+    color:var(--ink-dim);
+    text-transform:uppercase;
+    margin-bottom:1.25rem;
+    display:flex;
+    align-items:center;
+    gap:.625rem;
+    flex-wrap:wrap;
+  }
+  .item.layout-stack-center .item-meta{ justify-content:center; }
+  .item.layout-stack-right  .item-meta{ justify-content:flex-end; }
+  .item-meta .dot{
+    width:4px; height:4px;
+    background:var(--accent);
+    flex-shrink:0;
+  }
+  .item-meta .era-tag{ color:var(--accent); }
+
+  /* the year — HSBC red, ultra-light weight, big */
+  .item-year-big{
+    font-weight:200;
+    font-size:clamp(60px, 10vw, 148px);
+    line-height:.85;
+    letter-spacing:-0.06em;
+    color:var(--accent);
+    margin-bottom:1rem;
+  }
+
+  /* title — bold black, key word in red */
+  .item-title{
+    font-weight:700;
+    font-size:clamp(20px, 2.8vw, 38px);
+    line-height:1.1;
+    letter-spacing:-0.025em;
+    color:var(--ink);
+    margin-bottom:1.125rem;
+  }
+  .item-title b{ font-weight:700; color:var(--accent); }
+
+  /* description */
+  .item-desc{
+    font-weight:300;
+    font-size:.875rem;
+    line-height:1.65;
+    color:var(--ink-soft);
+    max-width:460px;
+    margin:0;
+  }
+  .item.layout-stack-center .item-desc{ margin:0 auto; }
+  .item.layout-stack-right  .item-desc{ margin-left:auto; }
+
+  /* ── pair-layout specifics ── */
+  .pair-row{
+    display:flex;
+    align-items:center;
+    gap:3rem;
+  }
+  .pair-row .item-year-big{
+    flex:0 0 auto;
+    margin-bottom:0;
+    font-size:clamp(68px, 11.5vw, 178px);
+  }
+  .pair-row .pair-text{
+    flex:1 1 0;
+    min-width:0;
+  }
+  .pair-row .item-title{ margin-bottom:1rem; }
+  .pair-row .item-desc{ max-width:none; }
+
+  /* a tiny vertical red bar accent inside pair layouts */
+  .item.layout-pair-left .pair-text,
+  .item.layout-pair-right .pair-text{
+    position:relative;
+  }
+  .item.layout-pair-left .pair-text::before{
+    content:""; position:absolute; left:-1.5rem; top:.3rem;
+    width:3px; height:38px; background:var(--accent);
+  }
+  .item.layout-pair-right .pair-row{
+    /* text on left, year on right via DOM order */
+  }
+  .item.layout-pair-right .pair-text{ text-align:right; }
+  .item.layout-pair-right .pair-text::after{
+    content:""; position:absolute; right:-1.5rem; top:.3rem;
+    width:3px; height:38px; background:var(--accent);
+  }
+
+  /* ───── OUTRO ───── */
+  .outro{ min-height:100vh; position:relative; background:var(--bg); }
+  .outro .eyebrow{
+    font-size:.6875rem; font-weight:600;
+    letter-spacing:.28em; color:var(--accent); text-transform:uppercase;
+    margin-bottom:2rem;
+    display:flex; align-items:center; gap:.625rem;
+    justify-content:center;
+  }
+  .outro .eyebrow::before{
+    content:""; display:inline-block;
+    width:10px; height:10px; background:var(--accent);
+  }
+  .outro h2{
+    font-weight:700;
+    font-size:clamp(36px, 6vw, 84px); line-height:1.04; letter-spacing:-0.03em;
+    max-width:22ch; margin-left:auto; margin-right:auto;
+    color:var(--ink);
+  }
+  .outro h2 em{ font-style:normal; color:var(--accent); }
+  .outro p{
+    font-weight:300;
+    color:var(--ink-soft); max-width:520px; line-height:1.7;
+  }
+  .outro .meta{
+    font-size:.625rem; font-weight:500;
+    letter-spacing:.22em; color:var(--ink-dim); text-transform:uppercase;
+  }
+
+  /* loading curtain — proper progressive load with year counter */
+  .curtain{
+    position:fixed; inset:0; background:var(--bg); z-index:1000;
+    display:grid; place-items:center;
+    transition:opacity .5s var(--ease), visibility 0s linear .5s;
+  }
+  .curtain.gone{ opacity:0; visibility:hidden; }
+  .curtain .curtain-stage{
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .curtain .load-year{
+    font-family:'Univers Next', 'Inter', sans-serif;
+    font-weight:200;
+    font-size:clamp(56px, 8vw, 96px);
+    line-height:1;
+    color:var(--ink);
+    letter-spacing:-0.04em;
+    margin-top:2.5rem;
+    font-variant-numeric:tabular-nums;
+  }
+  .curtain .bar{
+    width:240px; height:1px; background:var(--ink-faint);
+    margin-top:1.75rem; position:relative; overflow:hidden;
+  }
+  .curtain .bar-fill{
+    position:absolute; left:0; top:0; height:100%;
+    width:0; background:var(--accent);
+  }
+  .curtain .load-label{
+    font-family:'Univers Next', 'Inter', sans-serif;
+    font-size:.625rem; font-weight:500;
+    letter-spacing:.22em; text-transform:uppercase;
+    color:var(--ink-dim);
+    margin-top:1rem;
+  }
+  @media (max-width:768px){
+    .curtain .load-year{ font-size:clamp(44px, 12vw, 64px); margin-top:1.5rem; }
+    .curtain .bar{ width:200px; }
+  }
+
+  /* on narrower screens, collapse all layouts to centered stack */
+  @media (max-width:900px){
+    .item.layout-stack-left,
+    .item.layout-stack-right,
+    .item.layout-pair-left,
+    .item.layout-pair-right,
+    .item.layout-stack-center{
+      left:50% !important;
+      width:min(540px, 88vw);
+      text-align:center;
+    }
+    .item .item-meta{ justify-content:center !important; }
+    .item .item-desc{ margin:0 auto !important; }
+    .pair-row{
+      flex-direction:column;
+      gap:.5rem;
+      align-items:center;
+    }
+    .pair-row .item-year-big{ font-size:clamp(64px, 18vw, 140px); }
+    .pair-row .pair-text{ text-align:center !important; }
+    .item.layout-pair-left  .pair-text::before,
+    .item.layout-pair-right .pair-text::after{ display:none; }
+  }
+  @media (max-width:768px){
+    .index-rail{ top:72px; right:1rem; }
+    .index-rail .total{ font-size:1.4rem; }
+    .year-rail{ right:1rem; gap:.875rem; height:46vh; }
+    .year-rail .now{ font-size:1.625rem; }
+    .item-year-big{ font-size:clamp(56px, 18vw, 120px); }
+    .item-title{ font-size:1.5rem; }
+    .dot-rail i{ width:5px; }
+    .hero .sub{ font-size:.9375rem; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .item{ transition:opacity .3s; }
+  }
+
+
+  /* ───── LANGUAGE TOGGLE ───── */
+  .lang-switch{
+    display:flex; align-items:center; gap:.625rem;
+    font-size:.7rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  .lang-switch .lang-btn{
+    background:none; border:none;
+    color:var(--ink-dim);
+    cursor:pointer;
+    padding:.25rem .25rem;
+    transition:color .2s ease;
+    font-family:inherit;
+    font-size:inherit;
+    letter-spacing:inherit;
+    font-weight:inherit;
+  }
+  .lang-switch .lang-btn:hover{ color:var(--ink); }
+  .lang-switch .lang-btn.active{ color:var(--accent); font-weight:600; }
+  .lang-switch .sep{ color:var(--ink-faint); font-size:.55rem; }
+
+  /* ───── ARABIC TYPOGRAPHY ───── */
+  html[lang="ar"] body,
+  html[lang="ar"] .navbar,
+  html[lang="ar"] .item-title,
+  html[lang="ar"] .item-desc,
+  html[lang="ar"] .hero h1,
+  html[lang="ar"] .hero .sub,
+  html[lang="ar"] .hero .eyebrow,
+  html[lang="ar"] .outro h2,
+  html[lang="ar"] .outro p,
+  html[lang="ar"] .index-rail,
+  html[lang="ar"] .year-rail .now,
+  html[lang="ar"] .scroll-cue{
+    font-family:'Univers Arabic', 'IBM Plex Sans Arabic', 'Univers Next', 'Inter', system-ui, sans-serif;
+  }
+  /* Keep numbers in Inter Light (cleaner numerals than Plex Arabic) */
+  html[lang="ar"] .item-year-big,
+  html[lang="ar"] .era-year,
+  html[lang="ar"] .bg-num,
+  html[lang="ar"] .index-rail .total,
+  html[lang="ar"] .year-rail .now{
+    font-family:'Univers Next', 'Inter', system-ui, sans-serif;
+  }
+
+  /* ───── RTL ADJUSTMENTS ───── */
+  html[dir="rtl"] .navbar-brand .brand-mark{ margin-right:0; margin-left:.625rem; }
+  html[dir="rtl"] .navbar-brand{ margin-right:0; }
+  html[dir="rtl"] .item-title b,
+  html[dir="rtl"] .item-desc{ direction:rtl; text-align:inherit; }
+
+  /* Year rail position — stay on right in both modes (acts as visual anchor) */
+  /* Index rail keeps top-right placement */
+
+  /* Arabic text inside titles tends to need slightly larger leading */
+  html[lang="ar"] .item-title{ line-height:1.35; letter-spacing:0; }
+  html[lang="ar"] .item-desc{ line-height:1.85; letter-spacing:0; }
+  html[lang="ar"] .hero h1{ line-height:1.25; letter-spacing:0; }
+  html[lang="ar"] .outro h2{ line-height:1.3; letter-spacing:0; }
+
+
+
+  /* ───── REAL SAB LOGO ───── */
+  .curtain-logo{
+    display:block;
+    height:64px;
+    width:auto;
+    margin:0 auto 2.5rem;
+    user-select:none;
+  }
+  .nav-logo{
+    height:32px;
+    width:auto;
+    display:block;
+    user-select:none;
+  }
+  @media (max-width:768px){
+    .curtain-logo{ height:52px; margin-bottom:1.75rem; }
+    .nav-logo{ height:26px; }
+  }
+
+
+
+  /* ───────── INTRODUCTION SECTION ───────── */
+  .intro-section{
+    padding:9rem 0 7rem;
+    background:var(--bg);
+    position:relative;
+  }
+  .intro-statement{
+    max-width:780px;
+    margin:0 auto 6rem;
+    padding:0 1.5rem;
+    opacity:0; transform:translateY(28px);
+    transition:opacity 1s var(--ease), transform 1s var(--ease);
+  }
+  .intro-statement:last-child{ margin-bottom:0; }
+  .intro-statement.in-view{ opacity:1; transform:none; }
+
+  .intro-statement .eyebrow{
+    color:var(--accent);
+    font-size:.625rem;
+    font-weight:600;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    margin-bottom:1.5rem;
+    display:flex; align-items:center; gap:.5rem;
+  }
+  .intro-statement .eyebrow::before{
+    content:""; width:8px; height:8px; background:var(--accent); display:block;
+  }
+  .intro-statement h2{
+    font-size:clamp(28px, 3.4vw, 44px);
+    font-weight:300;
+    line-height:1.18;
+    letter-spacing:-0.025em;
+    color:var(--ink);
+    margin-bottom:1.5rem;
+  }
+  .intro-statement h2 em{
+    font-style:normal;
+    color:var(--accent);
+    font-weight:400;
+  }
+  .intro-statement p{
+    font-size:1.0625rem;
+    line-height:1.75;
+    font-weight:300;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  /* ───────── LEADERSHIP SECTION ───────── */
+  .leadership-section{
+    padding:7rem 0 9rem;
+    background:#fafafa;
+    border-top:1px solid var(--ink-faint);
+    border-bottom:1px solid var(--ink-faint);
+  }
+  .leadership-header{
+    text-align:center;
+    margin-bottom:5rem;
+    max-width:680px; margin-left:auto; margin-right:auto;
+    padding:0 1.5rem;
+    opacity:0; transform:translateY(20px);
+    transition:opacity .9s var(--ease), transform .9s var(--ease);
+  }
+  .leadership-header.in-view{ opacity:1; transform:none; }
+  /* Section header — editorial italic with a thin red bar above */
+  .leadership-header .eyebrow{
+    color:var(--ink);
+    font-size:1.125rem;
+    font-weight:400;
+    font-style:italic;
+    letter-spacing:0;
+    text-transform:none;
+    margin:0;
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1.25rem;
+  }
+  .leadership-header .eyebrow::before{
+    content:"";
+    width:36px;
+    height:1px;
+    background:var(--accent);
+    display:block;
+    order:-1;          /* bar appears ABOVE the text */
+  }
+  .leadership-header h2{
+    font-size:clamp(24px, 2.6vw, 36px);
+    font-weight:300;
+    line-height:1.25;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+    margin:0;
+  }
+
+  .leader-block{
+    max-width:1080px;
+    margin:0 auto 5rem;
+    padding:0 2rem;
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:3.5rem;
+    align-items:start;
+    opacity:0; transform:translateY(28px);
+    transition:opacity 1s var(--ease), transform 1s var(--ease);
+  }
+  .leader-block:last-child{ margin-bottom:0; }
+  .leader-block.in-view{ opacity:1; transform:none; }
+  .leader-block.reverse{ grid-template-columns:1fr 280px; }
+  .leader-block.reverse .leader-side{ order:2; }
+  .leader-block.reverse .leader-text{ order:1; }
+
+  .leader-portrait{
+    width:100%;
+    aspect-ratio:3/4;
+    object-fit:cover;
+    display:block;
+    filter:grayscale(0.15) contrast(1.02);
+  }
+  .leader-role{
+    margin-top:1.25rem;
+    font-size:.625rem;
+    font-weight:600;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex; align-items:center; gap:.5rem;
+  }
+  .leader-role::before{
+    content:""; width:8px; height:8px; background:var(--accent); display:block;
+  }
+  .leader-quote{
+    position:relative;
+    padding-left:1.75rem;
+    border-left:1px solid var(--ink-faint);
+  }
+  html[dir="rtl"] .leader-quote{
+    padding-left:0; padding-right:1.75rem;
+    border-left:none; border-right:1px solid var(--ink-faint);
+  }
+  .leader-quote p{
+    font-size:1.0625rem;
+    line-height:1.85;
+    font-weight:300;
+    color:var(--ink);
+    margin:0 0 1.25rem;
+  }
+  .leader-quote p:last-child{ margin-bottom:0; }
+
+  /* RTL adjustments for leader block: portrait stays on the right (start side in RTL) */
+  html[dir="rtl"] .leader-block{ grid-template-columns:1fr 280px; }
+  html[dir="rtl"] .leader-block.reverse{ grid-template-columns:280px 1fr; }
+
+  @media (max-width:768px){
+    .intro-section{ padding:6rem 0 4rem; }
+    .leadership-section{ padding:5rem 0 6rem; }
+    .intro-statement{ margin-bottom:4rem; }
+    .leadership-header{ margin-bottom:3rem; }
+    .leader-block,
+    .leader-block.reverse,
+    html[dir="rtl"] .leader-block,
+    html[dir="rtl"] .leader-block.reverse{
+      grid-template-columns:1fr;
+      gap:2rem;
+      margin-bottom:3.5rem;
+    }
+    .leader-side{ max-width:240px; margin:0 auto; }
+    .leader-block.reverse .leader-side,
+    .leader-block.reverse .leader-text{ order:initial; }
+  }
+
+
+
+  /* ───────── SMOOTHER FADE-IN (intro + leadership) ───────── */
+  .intro-statement,
+  .leadership-header{
+    opacity:0;
+    transform:translateY(36px);
+    transition:opacity 1.6s cubic-bezier(.16, 1, .3, 1),
+               transform 1.6s cubic-bezier(.16, 1, .3, 1);
+    will-change:opacity, transform;
+  }
+  .intro-statement.in-view,
+  .leadership-header.in-view{
+    opacity:1; transform:none;
+  }
+
+  /* Leader block — fade the portrait and quote separately with a stagger */
+  .leader-block{
+    opacity:1; transform:none;        /* parent stays solid; children animate */
+    transition:none;
+  }
+  .leader-block .leader-side,
+  .leader-block .leader-text{
+    opacity:0;
+    transform:translateY(36px);
+    transition:opacity 1.6s cubic-bezier(.16, 1, .3, 1),
+               transform 1.6s cubic-bezier(.16, 1, .3, 1);
+    will-change:opacity, transform;
+  }
+  .leader-block .leader-side{ transition-delay:80ms; }
+  .leader-block .leader-text{ transition-delay:300ms; }
+  .leader-block.in-view .leader-side,
+  .leader-block.in-view .leader-text{
+    opacity:1; transform:none;
+  }
+
+  /* Paragraphs inside the quote stagger softly */
+  .leader-block .leader-quote p{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 1.4s cubic-bezier(.16, 1, .3, 1),
+               transform 1.4s cubic-bezier(.16, 1, .3, 1);
+  }
+  .leader-block.in-view .leader-quote p{
+    opacity:1; transform:none;
+  }
+  .leader-block.in-view .leader-quote p:nth-child(1){ transition-delay:450ms; }
+  .leader-block.in-view .leader-quote p:nth-child(2){ transition-delay:600ms; }
+  .leader-block.in-view .leader-quote p:nth-child(3){ transition-delay:750ms; }
+  .leader-block.in-view .leader-quote p:nth-child(4){ transition-delay:900ms; }
+
+
+
+  /* Role label — editorial byline style */
+  .leader-quote .leader-role{
+    margin:0 0 1.75rem;
+    font-size:.8125rem;
+    font-weight:500;
+    letter-spacing:.005em;
+    text-transform:none;
+    color:var(--ink-soft);
+    display:flex; align-items:center; gap:.875rem;
+    font-style:italic;
+  }
+  .leader-quote .leader-role::before{
+    content:"";
+    width:28px; height:1px;
+    background:var(--accent);
+    display:block;
+    flex-shrink:0;
+  }
+
+  /* Tighten portrait column now that the role label is gone from below it */
+  .leader-side{ padding-top:.25rem; }
+
+  @media (max-width:768px){
+    .leader-quote .leader-role{ font-size:.75rem; gap:.625rem; }
+    .leader-quote .leader-role::before{ width:20px; }
+  }
+
+
+
+  /* ───────── INTRO STATEMENT STAGGER ───────── */
+  .intro-statement{
+    /* parent stays static; children animate */
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+  .intro-statement h2,
+  .intro-statement p{
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity 1.4s cubic-bezier(.16, 1, .3, 1),
+               transform 1.4s cubic-bezier(.16, 1, .3, 1);
+    will-change:opacity, transform;
+  }
+  .intro-statement.in-view h2{
+    opacity:1; transform:none;
+    transition-delay:120ms;
+  }
+  .intro-statement.in-view p{
+    opacity:1; transform:none;
+    transition-delay:380ms;
+  }
+
+
+  /* ═══════ ENHANCEMENT PACK ═══════ */
+  /* ── hero entrance choreography ── */
+  .hero .hero-kicker{
+    font-size:.6875rem; font-weight:600; letter-spacing:.28em;
+    text-transform:uppercase; color:var(--accent);
+    display:flex; align-items:center; justify-content:center; gap:.875rem;
+    margin-bottom:2.25rem;
+    opacity:0; transform:translateY(16px);
+    transition:opacity .9s var(--ease) .15s, transform .9s var(--ease) .15s;
+  }
+  .hero .hero-kicker::before,
+  .hero .hero-kicker::after{
+    content:""; width:34px; height:1px; background:var(--ink-line); display:block;
+  }
+  html[lang="ar"] .hero .hero-kicker{ letter-spacing:.04em; }
+  .hero.enter .hero-kicker{ opacity:1; transform:none; }
+
+  .hero h1 .hl{ display:block; overflow:hidden; padding-bottom:.12em; margin-bottom:-.12em; }
+  .hero h1 .hl-in{ display:inline-block; transform:translateY(115%); transition:transform 1.15s var(--ease); }
+  .hero h1 .hl:nth-child(1) .hl-in{ transition-delay:.28s; }
+  .hero h1 .hl:nth-child(2) .hl-in{ transition-delay:.44s; }
+  .hero.enter h1 .hl-in{ transform:none; }
+
+  .hero .hero-rule{
+    width:52px; height:2px; background:var(--accent);
+    margin:2.5rem auto 0;
+    transform:scaleX(0); transition:transform .9s var(--ease-io) .8s;
+  }
+  .hero.enter .hero-rule{ transform:scaleX(1); }
+
+  .hero .bg-num{ opacity:0; transition:opacity 1.5s var(--ease) .1s; }
+  .hero.enter .bg-num{ opacity:1; }
+
+  .hero .scroll-cue{ opacity:0; transition:opacity 1.2s var(--ease) 1.2s; }
+  .hero.enter .scroll-cue{ opacity:1; }
+
+  /* ── leadership: editorial chapter treatment ── */
+  .leader-pull{
+    font-size:clamp(21px, 2.3vw, 31px);
+    font-weight:300; line-height:1.42; letter-spacing:-0.02em;
+    color:var(--ink); margin:0 0 2.25rem;
+    position:relative; padding-left:1.75rem;
+    opacity:0; transform:translateY(22px);
+    transition:opacity 1s var(--ease) .25s, transform 1s var(--ease) .25s;
+  }
+  .leader-pull::before{
+    content:""; position:absolute; left:0; top:.32em; bottom:.32em;
+    width:3px; background:var(--accent);
+  }
+  html[dir="rtl"] .leader-pull{ padding-left:0; padding-right:1.75rem; letter-spacing:0; line-height:1.6; }
+  html[dir="rtl"] .leader-pull::before{ left:auto; right:0; }
+  .leader-block.in-view .leader-pull{ opacity:1; transform:none; }
+
+  .leader-quote{ border-left:none; padding-left:0; }
+  html[dir="rtl"] .leader-quote{ border-right:none; padding-right:0; }
+  .leader-quote .leader-role{ margin-top:0; margin-bottom:1.75rem; }
+
+  .leader-quote p{
+    font-size:1rem; line-height:1.9; color:var(--ink-soft);
+    opacity:0; transform:translateY(18px);
+    transition:opacity 1.1s var(--ease), transform 1.1s var(--ease);
+  }
+  .leader-quote p:first-of-type{
+    border-top:1px solid var(--ink-faint);
+    padding-top:1.75rem;
+    font-size:1.125rem; color:var(--ink);
+  }
+  .leader-quote p:nth-of-type(1){ transition-delay:.40s; }
+  .leader-quote p:nth-of-type(2){ transition-delay:.52s; }
+  .leader-quote p:nth-of-type(3){ transition-delay:.64s; }
+  .leader-quote p:nth-of-type(4){ transition-delay:.76s; }
+  .leader-block.in-view .leader-quote p{ opacity:1; transform:none; }
+
+  .leader-side{ position:relative; z-index:0; }
+  .leader-side::after{
+    content:""; position:absolute; inset:0;
+    transform:translate(14px,14px);
+    border:1px solid rgba(219,0,17,.30);
+    pointer-events:none; z-index:-1;
+  }
+  html[dir="rtl"] .leader-side::after{ transform:translate(-14px,14px); }
+  .leader-portrait{
+    filter:grayscale(1) contrast(1.04);
+    clip-path:inset(0 100% 0 0);
+    transition:clip-path 1.2s var(--ease-io) .15s, filter .8s var(--ease);
+  }
+  html[dir="rtl"] .leader-portrait{ clip-path:inset(0 0 0 100%); }
+  .leader-block.in-view .leader-portrait{ clip-path:inset(0 0 0 0); }
+  .leader-portrait:hover{ filter:grayscale(0) contrast(1); }
+
+  /* new display text uses the Arabic face in AR mode (numerals stay Inter elsewhere) */
+  html[lang="ar"] .hero .hero-kicker,
+  html[lang="ar"] .leader-pull{
+    font-family:'Univers Arabic', 'IBM Plex Sans Arabic', 'Univers Next', 'Inter', system-ui, sans-serif;
+    letter-spacing:0;
+  }
+
+  /* ── transparent menu pinned on top: large logo at rest, shrinks on scroll ── */
+  .sab-nav{
+    position:fixed !important;
+    background:transparent !important;
+    -webkit-backdrop-filter:none !important; backdrop-filter:none !important;
+    border-bottom:0 !important;
+    padding:.9rem 0 !important;
+    transition:padding .45s var(--ease);
+  }
+  .sab-nav .nav-logo{ height:46px; transition:height .45s var(--ease); }
+  .sab-nav .nav-link{ font-size:.6875rem; }
+  .sab-nav.scrolled{ padding:.4rem 0 !important; }
+  .sab-nav.scrolled .nav-logo{ height:22px; }
+  @media (max-width:768px){
+    .sab-nav .nav-logo{ height:36px; }
+    .sab-nav.scrolled .nav-logo{ height:20px; }
+  }
+
+  /* ── variant switcher pill (preview aid) ── */
+  .opt-switch{
+    position:fixed; right:14px; bottom:14px; z-index:950;
+    display:flex; gap:2px; padding:3px;
+    background:rgba(255,255,255,.92);
+    -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+    border:1px solid var(--ink-faint); border-radius:100px;
+  }
+  .opt-switch a{
+    font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    padding:5px 11px; border-radius:100px;
+    color:var(--ink-dim); text-decoration:none;
+  }
+  .opt-switch a:hover{ color:var(--ink); }
+  .opt-switch a.on{ background:var(--accent); color:#fff; }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero .hero-kicker, .hero h1 .hl-in, .hero .hero-rule, .hero .bg-num, .hero .scroll-cue,
+    .leader-pull, .leader-quote p, .leader-portrait{ transition:none !important; }
+    .hero .hero-kicker, .hero .scroll-cue, .leader-pull, .leader-quote p{ opacity:1 !important; transform:none !important; }
+    .hero h1 .hl-in{ transform:none !important; }
+    .hero .hero-rule{ transform:scaleX(1) !important; }
+    .hero .bg-num{ opacity:1 !important; }
+    .leader-portrait{ clip-path:none !important; }
+  }
+
+  /* ── site footer (compact) ── */
+  .site-footer{ background:#0a0a0a; padding:2rem 2rem 1.25rem; }
+  .site-footer .f-inner{ max-width:1080px; margin:0 auto; }
+  .site-footer .f-top{ display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; }
+  .footer-logo{ height:28px; width:auto; display:block; }
+  .f-social{ display:flex; gap:.5rem; }
+  .f-social a{
+    width:32px; height:32px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.22);
+    display:grid; place-items:center; color:#fff;
+    transition:background .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
+  }
+  .f-social a:hover{ background:var(--accent); border-color:var(--accent); transform:translateY(-2px); }
+  .f-social svg{ width:13px; height:13px; fill:currentColor; display:block; }
+  .f-legal{
+    display:flex; flex-wrap:wrap; gap:.4rem 1.6rem; margin:1.1rem 0 .2rem;
+  }
+  .f-legal a{
+    color:rgba(255,255,255,.72); text-decoration:none;
+    font-size:.68rem; letter-spacing:.08em;
+    transition:color .3s;
+  }
+  .f-legal a:hover{ color:#fff; }
+  /* statutory entity details, as published by SAB */
+  .f-entity{
+    margin:1.1rem 0 0; max-width:none;
+    font-size:.66rem; line-height:1.85; letter-spacing:.005em;
+    color:rgba(255,255,255,.52);
+  }
+  html[lang="ar"] .f-entity{ font-size:.72rem; line-height:2; letter-spacing:0; }
+  @media (max-width:768px){ .f-entity{ font-size:.62rem; line-height:1.8; } }
+  html[lang="ar"] .f-legal a{ letter-spacing:0; }
+  .site-footer .f-rule{ height:1px; background:rgba(255,255,255,.14); margin:1.25rem 0 .9rem; }
+  .site-footer .f-meta{
+    display:flex; gap:.75rem 2rem; flex-wrap:wrap; justify-content:space-between;
+    font-size:.5625rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+    color:rgba(255,255,255,.5);
+  }
+  html[lang="ar"] .site-footer .f-meta{
+    letter-spacing:.02em; font-size:.6875rem;
+    font-family:'Univers Arabic', 'IBM Plex Sans Arabic', 'Univers Next', 'Inter', system-ui, sans-serif;
+  }
+  @media (max-width:768px){
+    .site-footer{ padding:1.75rem 1.5rem 1rem; }
+    .site-footer .f-top{ flex-direction:column; align-items:center; gap:1rem; }
+    .site-footer .f-meta{ justify-content:center; text-align:center; }
+    .footer-logo{ height:24px; }
+  }
+
+  /* ── option 1: kinetic intro statements ── */
+  .intro-statement{ opacity:1 !important; transform:none !important; }
+  .intro-statement h2 .w{
+    display:inline-block; overflow:hidden; vertical-align:bottom;
+    padding-bottom:.14em; margin-bottom:-.14em;
+  }
+  .intro-statement h2 .w-in{
+    display:inline-block; transform:translateY(120%);
+    transition:transform .85s var(--ease);
+  }
+  .intro-statement.in-view h2 .w-in{ transform:none; }
+  .intro-statement h2 em{ position:relative; }
+  .intro-statement h2 em::after{
+    content:""; position:absolute; left:0; right:0; bottom:.02em; height:2px;
+    background:var(--accent);
+    transform:scaleX(0); transform-origin:left center;
+    transition:transform .8s var(--ease-io) .95s;
+  }
+  html[dir="rtl"] .intro-statement h2 em::after{ transform-origin:right center; }
+  .intro-statement.in-view h2 em::after{ transform:scaleX(1); }
+  .intro-statement p{
+    opacity:0; transform:translateY(26px);
+    transition:opacity 1.1s var(--ease) .5s, transform 1.1s var(--ease) .5s;
+  }
+  .intro-statement.in-view p{ opacity:1; transform:none; }
+
+  /* century marker: light years, drawing line, decade ticks, centre diamond */
+  .span-line{
+    display:flex; align-items:center; justify-content:center; gap:1.75rem;
+    max-width:880px; margin:0 auto 6.5rem; padding:0 1.5rem;
+  }
+  .span-line .sy{
+    font-size:clamp(24px, 2.6vw, 38px); font-weight:200; letter-spacing:.02em;
+    color:var(--ink); font-variant-numeric:tabular-nums; line-height:1;
+    opacity:0; transition:opacity 1s var(--ease) .15s, transform 1s var(--ease) .15s;
+  }
+  .span-line .sy-a{ transform:translateX(-14px); }
+  .span-line .sy-b{ transform:translateX(14px); }
+  html[dir="rtl"] .span-line .sy-a{ transform:translateX(14px); }
+  html[dir="rtl"] .span-line .sy-b{ transform:translateX(-14px); }
+  .span-line.in-view .sy{ opacity:1; transform:none; }
+
+  .sl-track{ position:relative; flex:1 1 auto; height:52px; max-width:560px; }
+  .sl-base, .sl-draw{
+    position:absolute; left:0; right:0; top:50%; height:1px; margin-top:-.5px;
+  }
+  .sl-base{ background:var(--ink-faint); }
+  .sl-draw{
+    background:var(--accent);
+    transform:scaleX(0); transform-origin:left center;
+    transition:transform 1.6s var(--ease-io) .35s;
+  }
+  html[dir="rtl"] .sl-draw{ transform-origin:right center; }
+  .span-line.in-view .sl-draw{ transform:scaleX(1); }
+
+  .sl-tick{
+    position:absolute; top:50%; inset-inline-start:var(--x);
+    width:1px; height:9px; margin-top:-4.5px;
+    background:var(--ink-line);
+    transform:scaleY(0);
+    transition:transform .5s var(--ease) var(--d, .5s), background .3s;
+  }
+  .span-line.in-view .sl-tick{ transform:scaleY(1); background:#e9aeb2; }
+
+  .sl-mark{ position:absolute; left:50%; top:50%; width:0; height:0; }
+  .sl-mark b{
+    position:absolute; left:-4.5px; top:-4.5px; width:9px; height:9px;
+    background:var(--accent); display:block;
+    transform:rotate(45deg) scale(0);
+    transition:transform .6s var(--ease) 1.15s;
+  }
+  .span-line.in-view .sl-mark b{ transform:rotate(45deg) scale(1); }
+  .sl-mark span{
+    position:absolute; top:15px; left:50%;
+    transform:translateX(-50%) translateY(6px);
+    font-size:.5625rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--ink-dim); white-space:nowrap;
+    opacity:0;
+    transition:opacity .8s var(--ease) 1.35s, transform .8s var(--ease) 1.35s;
+  }
+  html[lang="ar"] .sl-mark span{
+    letter-spacing:.06em;
+    font-family:'Univers Arabic', 'IBM Plex Sans Arabic', 'Univers Next', 'Inter', system-ui, sans-serif;
+  }
+  .span-line.in-view .sl-mark span{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  @media (max-width:768px){
+    .span-line{ margin-bottom:4rem; gap:1rem; }
+    .sl-track{ height:46px; }
+  }
+
+  /* ── option 1: cleaner stage — no giant watermark year behind the milestones ── */
+  .era-year{ display:none !important; }
+
+  /* single timeline control: the scrubber replaces the right year rail */
+  .year-rail{ display:none !important; }
+
+  /* ── option 1: interactive timeline scrubber — VERTICAL rail on the right (desktop) ── */
+  .dot-rail{ display:none !important; }
+  /* keep the preview pill out of the scrubber's way while the timeline is pinned */
+  .opt-switch{ transition:opacity .35s var(--ease); }
+  .tl-pinned .opt-switch{ opacity:0; pointer-events:none; }
+  .scrub{
+    position:absolute; inset-inline-end:1.6rem; top:56%; transform:translateY(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:.8rem;
+    user-select:none; -webkit-user-select:none;
+    z-index:120;
+  }
+  /* endpoints are redundant on the vertical rail (traveling year + tick tooltips cover it) */
+  .scrub-y{ display:none; }
+  .scrub-btn{
+    width:36px; height:36px; flex:0 0 auto; border-radius:50%;
+    border:1px solid var(--ink-line); background:#fff; padding:0;
+    color:var(--ink); display:grid; place-items:center; cursor:pointer;
+    transition:border-color .3s var(--ease), color .3s var(--ease), transform .3s var(--ease);
+  }
+  .scrub-btn b{
+    font-weight:400; font-size:20px; line-height:0; display:block;
+    transform:rotate(90deg);           /* chevrons point up / down on the vertical rail */
+  }
+  .scrub-btn:hover{ border-color:var(--accent); color:var(--accent); transform:scale(1.06); }
+  html[dir="rtl"] .scrub-end b{ transform:scaleX(-1); }
+  .scrub-y{
+    font-size:.6875rem; font-weight:600; letter-spacing:.14em; color:var(--ink-dim);
+    font-variant-numeric:tabular-nums; flex:0 0 auto;
+  }
+  .scrub-track{
+    position:relative; width:38px; height:min(36vh, 330px); flex:0 0 auto;
+    cursor:pointer; touch-action:none;
+  }
+  .scrub-track::before{
+    content:""; position:absolute; top:0; bottom:0; left:50%; width:2px; margin-left:-1px;
+    background:var(--ink-faint); border-radius:2px;
+  }
+  .scrub-fill{
+    position:absolute; top:0; left:50%; width:2px; margin-left:-1px;
+    height:var(--g, 0%); background:var(--accent); border-radius:2px; pointer-events:none;
+  }
+  .scrub-tick{
+    position:absolute; left:50%; top:var(--p);
+    width:12px; height:9px; margin:-4.5px 0 0 -6px;
+    background:transparent;
+  }
+  .scrub-tick::before{
+    content:""; position:absolute; top:4px; left:0; width:100%; height:1px;
+    background:var(--ink-line); transition:background .25s;
+  }
+  .scrub-tick.passed::before{ background:#e9aeb2; }
+  .scrub-tick.active{ width:18px; margin-left:-9px; }
+  .scrub-tick.active::before{ height:2px; top:3.5px; background:var(--accent); }
+  .scrub-tick::after{
+    content:attr(data-y);
+    position:absolute; inset-inline-end:calc(100% + 10px); top:50%;
+    transform:translateY(-50%);
+    background:var(--ink); color:#fff;
+    font-size:.625rem; font-weight:600; letter-spacing:.08em;
+    font-variant-numeric:tabular-nums;
+    padding:.3rem .55rem; border-radius:3px; white-space:nowrap;
+    opacity:0; pointer-events:none;
+    transition:opacity .2s var(--ease);
+  }
+  .scrub-tick:hover::after{ opacity:1; }
+  .scrub-handle{
+    position:absolute; left:50%; top:var(--g, 0%);
+    width:14px; height:14px; margin:-7px 0 0 -7px;
+    background:#fff; border:2px solid var(--accent); border-radius:50%;
+    box-shadow:0 1px 6px rgba(0,0,0,.18);
+    pointer-events:none;
+  }
+  .scrub-year{
+    position:absolute; inset-inline-end:calc(100% + 12px); top:var(--g, 0%);
+    transform:translateY(-50%);
+    font-size:.75rem; font-weight:600; letter-spacing:.1em;
+    color:var(--accent); font-variant-numeric:tabular-nums;
+    pointer-events:none; white-space:nowrap;
+  }
+  .scrub-end{
+    flex:0 0 auto; cursor:pointer;
+    border:1px solid var(--ink-line); background:#fff; border-radius:100px;
+    font-size:.625rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--ink); padding:.6rem 1rem;
+    display:flex; align-items:center; gap:.45rem;
+    transition:border-color .3s var(--ease), color .3s var(--ease);
+  }
+  .scrub-end b{ font-weight:400; font-size:13px; line-height:0; }
+  .scrub-end:hover{ border-color:var(--accent); color:var(--accent); }
+  html[lang="ar"] .scrub-end{
+    letter-spacing:0;
+    font-family:'Univers Arabic', 'IBM Plex Sans Arabic', 'Univers Next', 'Inter', system-ui, sans-serif;
+  }
+  .scrub-play{
+    background:var(--accent) !important; border-color:var(--accent) !important; color:#fff !important;
+  }
+  .scrub-play:hover{
+    background:var(--accent-dk) !important; border-color:var(--accent-dk) !important;
+  }
+  .scrub-play svg{ display:block; margin:auto; }
+
+  /* narrow screens: fall back to the horizontal bottom bar (a right rail would sit on the text) */
+  @media (max-width:900px){
+    .scrub{
+      inset-inline-end:auto; left:50%; top:auto; bottom:1.1rem;
+      transform:translateX(-50%);
+      flex-direction:row; width:min(780px, 93vw); gap:.6rem;
+    }
+    .scrub-btn{ width:32px; height:32px; }
+    .scrub-btn b{ transform:none; }
+    html[dir="rtl"] .scrub-btn b{ transform:scaleX(-1); }
+    .scrub-y{ display:none; }
+    .scrub-track{ width:auto; height:38px; flex:1 1 auto; }
+    .scrub-track::before{ top:50%; bottom:auto; left:0; right:0; width:auto; height:2px; margin:-1px 0 0 0; }
+    .scrub-fill{ top:50%; left:auto; inset-inline-start:0; width:var(--g, 0%); height:2px; margin:-1px 0 0 0; }
+    .scrub-tick{
+      top:50%; left:auto; inset-inline-start:var(--p);
+      width:9px; height:12px; margin:-6px 0 0 0; margin-inline-start:-4.5px;
+    }
+    .scrub-tick::before{ top:0; left:4px; width:1px; height:100%; }
+    .scrub-tick.active{ width:9px; height:18px; margin-top:-9px; margin-left:0; margin-inline-start:-4.5px; }
+    .scrub-tick.active::before{ width:2px; height:100%; top:0; left:3.5px; }
+    .scrub-tick::after{
+      inset-inline-end:auto; left:50%; top:auto; bottom:calc(100% + 10px);
+      transform:translateX(-50%);
+    }
+    .scrub-handle{ top:50%; left:auto; inset-inline-start:var(--g, 0%); margin:-7px 0 0 0; margin-inline-start:-7px; }
+    .scrub-year{
+      inset-inline-end:auto; inset-inline-start:var(--g, 0%); top:auto; bottom:calc(50% + 14px);
+      transform:translateX(-50%);
+    }
+    html[dir="rtl"] .scrub-year{ transform:translateX(50%); }
+    .scrub-end{ padding:.5rem .75rem; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .intro-statement h2 .w-in, .intro-statement h2 em::after, .intro-statement p,
+    .span-line .sy, .sl-draw, .sl-tick, .sl-mark b, .sl-mark span{ transition:none !important; }
+    .intro-statement h2 .w-in{ transform:none !important; }
+    .intro-statement p, .span-line .sy, .sl-mark span{ opacity:1 !important; transform:none !important; }
+    .intro-statement h2 em::after, .sl-draw{ transform:scaleX(1) !important; }
+    .sl-tick{ transform:scaleY(1) !important; }
+    .sl-mark b{ transform:rotate(45deg) scale(1) !important; }
+    .sl-mark span{ transform:translateX(-50%) !important; }
+  }
+
+  /* == SAB centennial brand kit ==
+     Arabic display + text = Univers Arabic (the bank's licensed brand face).
+     Amiri = fallback, full Arabic + Latin coverage.
+     The previous OS.ai Naskh display face was removed 2026-08-30: its
+     teh-marbuta/heh glyphs rendered with a spurious hamza and swallowed word
+     spacing (client: "all the heh and teh-marbuta have the hamza on top"). */
+  @font-face{
+    font-family:'Amiri';
+    src:url('../fonts/Amiri-Regular.woff2') format('woff2');
+    font-weight:400; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:'Amiri';
+    src:url('../fonts/Amiri-Bold.woff2') format('woff2');
+    font-weight:700; font-style:normal; font-display:swap;
+  }
+
+  /* Arabic DISPLAY — the brand's Naskh headline face */
+  html[lang="ar"] .hero h1,
+  html[lang="ar"] .item-title,
+  html[lang="ar"] .item-title b,
+  html[lang="ar"] .outro h2,
+  html[lang="ar"] .leadership-header h2,
+  html[lang="ar"] .leader-block h3,
+  html[lang="ar"] .intro h2,
+  html[lang="ar"] .lead-pull{
+    font-family:'Univers Arabic', 'Amiri', serif !important;
+    font-weight:400 !important;
+    line-height:1.5;
+  }
+  /* Arabic TEXT — Amiri carries body copy, nav and UI chrome */
+  html[lang="ar"] .item-desc,
+  html[lang="ar"] .intro p,
+  html[lang="ar"] .outro p,
+  html[lang="ar"] .leader-block p,
+  html[lang="ar"] .nav-link,
+  html[lang="ar"] .eyebrow,
+  html[lang="ar"] .site-footer,
+  html[lang="ar"] .milestone-label{
+    font-family:'Amiri', 'Univers Arabic', 'IBM Plex Sans Arabic', serif !important;
+  }
+  /* Arabic display sizing nudge */
+  html[lang="ar"] .hero h1{ font-size:clamp(2.1rem, 5.6vw, 4.6rem); }
+  html[lang="ar"] .item-title{ font-size:clamp(1.5rem, 3.1vw, 2.5rem); }
+
+  /* -- hero: the archival Praya panorama heads the lockup, headline beneath it;
+       the old giant "100" watermark stays retired -- */
+  .hero .bg-num{ display:none !important; }
+  /* the red rule and the "Begin" scroll cue retire with the new hero lockup */
+  .hero .hero-rule, .hero .scroll-cue{ display:none !important; }
+  .hero{ padding-block:7rem 4rem; }
+  /* full-bleed: the banner escapes the bootstrap container and spans the
+     viewport edge to edge (client, 2026-10-11). html already clips overflow-x,
+     so the 100vw width cannot introduce a horizontal scrollbar. */
+  .hero-banner{
+    width:100vw; max-width:none;
+    margin:0 0 2.6rem; margin-inline:calc(50% - 50vw);
+    opacity:0; transform:translateY(22px);
+    transition:opacity 1.15s var(--ease) .05s, transform 1.15s var(--ease-io) .05s;
+    will-change:transform, opacity;
+  }
+  /* The banner is now the brand loop. Its subject fills ~88% of the frame
+     height, so cropping it would clip the coin — it is contained instead, and
+     because the clip's own background is white it merges with the page and the
+     letterboxing is invisible while the band still runs edge to edge. */
+  .hero-banner video{
+    display:block; width:100%;
+    height:clamp(240px, 52vh, 560px);
+    object-fit:contain; background:#fff;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-banner video{ display:none; }
+    .hero-banner{ background:var(--sab-hero-poster) center/contain no-repeat; height:clamp(240px, 52vh, 560px); }
+  }
+  .hero.enter .hero-banner{ opacity:1; transform:none; }
+  @media (max-width:768px){
+    .hero{ padding-block:5.5rem 3rem; }
+    .hero-banner{ margin-bottom:1.7rem; }
+    .hero-banner video{ height:clamp(160px, 30vh, 260px); }
+  }
+
+  /* -- centenary film: autoplays as it centres, pauses once it leaves -- */
+  .film-section{ padding:5.5rem 1.5rem 6rem; background:var(--bg); }
+  /* the stage keeps the film's place in the flow; the frame on top of it is
+     what grows to fill the screen, so nothing shifts when it goes fixed */
+  .film-stage{
+    position:relative; max-width:min(1180px, 92vw); margin:0 auto; aspect-ratio:16/9;
+  }
+  .film-frame{
+    position:absolute; inset:0; background:#000; overflow:hidden;
+    box-shadow:0 30px 70px rgba(0,0,0,.22);
+    transform-origin:top left; will-change:transform;
+  }
+  .film-frame video{ display:block; width:100%; height:100%; object-fit:cover; }
+  /* full screen: driven by a FLIP transform from the inline rect, so the growth
+     animates on the compositor instead of re-laying the page out each frame */
+  .film-frame.is-full{
+    position:fixed; inset:0; z-index:300;
+    max-width:none; box-shadow:none;
+  }
+  .film-frame.is-full video{ object-fit:contain; }
+  .film-frame.flip{ transition:transform .78s cubic-bezier(.76,0,.24,1); }
+  @media (prefers-reduced-motion: reduce){
+    .film-frame.flip{ transition:none; }
+  }
+  .film-sound{
+    position:absolute; inset-inline-end:14px; bottom:14px; z-index:2;
+    display:inline-flex; align-items:center; gap:.4rem;
+    padding:.5rem .95rem; border:1px solid rgba(255,255,255,.55);
+    background:rgba(0,0,0,.38); color:#fff; border-radius:999px;
+    font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+    cursor:pointer; backdrop-filter:blur(6px);
+    transition:background .25s var(--ease), border-color .25s var(--ease);
+  }
+  .film-sound:hover{ background:rgba(0,0,0,.6); border-color:#fff; }
+  .film-skip{
+    position:absolute; inset-inline-start:14px; bottom:14px; z-index:2;
+    padding:.5rem .95rem; border:1px solid rgba(255,255,255,.55);
+    background:rgba(0,0,0,.38); color:#fff; border-radius:999px;
+    font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+    cursor:pointer; backdrop-filter:blur(6px);
+    transition:background .25s var(--ease), border-color .25s var(--ease);
+  }
+  .film-skip:hover{ background:rgba(0,0,0,.6); border-color:#fff; }
+  /* progress: the viewer is held for the length of the film, so show how much
+     of it is left. Shown only once the film takes the screen. */
+  .film-progress{
+    position:absolute; left:0; right:0; bottom:0; height:3px; z-index:3;
+    background:rgba(255,255,255,.22); opacity:0;
+    transition:opacity .5s var(--ease);
+  }
+  .film-frame.is-full .film-progress{ opacity:1; }
+  .film-progress span{
+    display:block; height:100%; width:100%;
+    background:var(--accent);
+    transform:scaleX(0); transform-origin:left center;
+    transition:transform .25s linear;     /* smooths the 4Hz timeupdate */
+  }
+  html[dir="rtl"] .film-progress span{ transform-origin:right center; }
+  /* while the film holds the page, nothing else scrolls — and the navbar steps
+     aside so the film really is the whole screen */
+  html.film-locked, html.film-locked body{ overflow:hidden !important; }
+  /* the navbar drops below the film's layer, so the film rises over the logo
+     as it grows instead of the logo sitting on top of the picture */
+  html.film-locked .sab-nav{ z-index:1 !important; pointer-events:none; }
+  /* the cue sits well clear of the film and reads boldly, with a drawn arrow
+     underneath as the visual hint (client, 2026-10-29) */
+  .film-cue{ margin:5.5rem auto 0; text-align:center; }
+  .film-cue p{
+    margin:0; font-size:1.02rem; font-weight:700;
+    letter-spacing:.17em; text-transform:uppercase; color:var(--ink);
+  }
+  html[lang="ar"] .film-cue p{ letter-spacing:0; font-size:1.3rem; text-transform:none; }
+  .film-cue-arrow{
+    display:block; width:17px; height:17px; margin:1.15rem auto 0;
+    border-right:2.5px solid var(--accent); border-bottom:2.5px solid var(--accent);
+    transform:rotate(45deg);
+    animation:cueHop 1.9s var(--ease) infinite;
+  }
+  @keyframes cueHop{
+    0%,100%{ transform:rotate(45deg) translate(0,0); opacity:.45; }
+    50%    { transform:rotate(45deg) translate(5px,5px); opacity:1; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .film-cue-arrow{ animation:none; opacity:.85; }
+  }
+  @media (max-width:768px){
+    .film-section{ padding:3.5rem 1rem 4rem; }
+    .film-cue{ margin-top:3.4rem; }
+    .film-cue p{ font-size:.82rem; letter-spacing:.13em; }
+  }
+  /* ── Sadu motif from the brand kit, as quiet section furniture ── */
+  .sadu-rule{
+    width:min(320px, 46vw); height:34px; margin:2.4rem auto 0;
+    color:var(--accent);
+    -webkit-mask:url('../pattern_row.svg') center/contain no-repeat;
+            mask:url('../pattern_row.svg') center/contain no-repeat;
+    background:currentColor; opacity:.85;
+  }
+  .outro .sadu-rule{ margin-bottom:1.8rem; }
+  .sadu-corner{
+    position:absolute; top:0; inset-inline-end:0;
+    width:min(230px, 20vw); aspect-ratio:535/1059;
+    color:var(--accent); opacity:.10; pointer-events:none;
+    -webkit-mask:url('../pattern_corner.svg') center/contain no-repeat;
+            mask:url('../pattern_corner.svg') center/contain no-repeat;
+    background:currentColor;
+  }
+  html[dir="rtl"] .sadu-corner{ transform:scaleX(-1); }
+  @media (max-width:768px){ .sadu-corner{ display:none; } }
+
+  /* ── the century closes on the 2026 key visual, presented as a full hero ── */
+  /* NB: .item.has-photo is declared later with the same specificity, so the
+     finale rules carry .has-photo too or they lose the cascade tie */
+  .item.has-photo.finale{
+    width:min(1500px, 96vw) !important;
+    /* nudged below centre so the full-bleed artwork clears the milestone
+       counter in the top-right (it used to run straight behind it) */
+    top:calc(50% + 58px) !important;
+  }
+  /* belt-and-braces: the artwork is red at the edges, so give the counter a
+     halo while the finale is on screen (light palette only — dark mode floats
+     the artwork on a white plate and already reads clearly) */
+  body:not(.dark):has(.item.finale.live) .index-rail{
+    text-shadow:0 0 14px #fff, 0 0 6px #fff, 0 0 3px #fff;
+  }
+  .item.finale .m-photo{ margin-bottom:0; }
+  .item.finale .m-photo img{
+    max-width:96vw !important; max-height:62vh !important;
+    box-shadow:none !important; filter:none !important;
+    transform:none !important;                 /* flat, undistorted brand artwork */
+  }
+  /* The key visual used to carry its own year + tagline, but the client asked
+     for that band to be cropped off — so the century now closes on an explicit
+     stated year and celebration line beneath the artwork (client request). */
+  .item.finale .item-desc{ display:none !important; }
+  .item.finale .item-year-big{
+    display:block !important;
+    margin-top:.55rem !important;
+    font-size:clamp(40px, 5.2vw, 76px) !important;
+    text-shadow:none !important;
+    transform:none !important;                 /* flat, like the artwork above */
+  }
+  .item.finale .item-title{
+    display:block !important;
+    margin-top:.1rem !important;
+    transform:none !important;
+    font-size:clamp(1.15rem, 2.2vw, 1.8rem) !important;
+  }
+  @media (max-width:768px){
+    .item.finale .m-photo img{ max-height:44vh !important; }
+    .item.finale .item-year-big{ font-size:clamp(34px, 9vw, 52px) !important; }
+  }
+
+  /* ══ DARK MODE — scoped to the milestones view only ══════════════════════
+     The toggle only appears while the timeline is pinned (.tl-pinned), and the
+     dark palette only applies while it is pinned, so the hero, intro, outro,
+     Leadership and every other page stay light no matter what is selected.  */
+  /* the toggle docks into the timeline control rail (JS moves it there) */
+  .dark-toggle{
+    flex:0 0 auto; cursor:pointer; order:99;
+    display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
+    padding:.55rem .85rem; border-radius:100px;
+    font:600 .625rem/1 'Univers Next', 'Inter', system-ui, sans-serif; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--ink); background:#fff; border:1px solid var(--ink-line);
+    transition:border-color .3s var(--ease), color .3s var(--ease), background .3s var(--ease);
+  }
+  .dark-toggle:hover{ border-color:var(--accent); color:var(--accent); }
+  .dark-toggle svg{ width:12px; height:12px; fill:currentColor; flex:0 0 auto; }
+  html[lang="ar"] .dark-toggle{
+    letter-spacing:0; font-family:'Amiri','Univers Arabic', 'IBM Plex Sans Arabic','Univers Next', 'Inter',sans-serif;
+  }
+  /* before JS docks it, and if the rail is ever absent, keep it out of the way */
+  .dark-toggle:not(.docked){ position:fixed; inset-inline-end:1.6rem; bottom:1.6rem; z-index:70; }
+  /* the rail, lifted out of the stage's 3D context, renders crisp and is shown
+     from the moment the first milestone (1926) has arrived on stage */
+  .scrub.lifted{
+    position:fixed; z-index:120;
+    opacity:0; pointer-events:none;
+    transition:opacity .45s var(--ease);
+  }
+  body.ms-live .scrub.lifted{ opacity:1; pointer-events:auto; }
+  /* the docked toggle rides the rail's visibility; the un-docked fallback keeps its own */
+  .dark-toggle:not(.docked){ opacity:0; pointer-events:none; }
+  .tl-pinned .dark-toggle:not(.docked){ opacity:1; pointer-events:auto; }
+  /* on the horizontal mobile rail the label would starve the scrub track,
+     so the toggle collapses to a round icon the same size as the chevrons */
+  @media (max-width:900px){
+    .dark-toggle{ width:32px; height:32px; padding:0; border-radius:50%; }
+    .dark-toggle span{ display:none; }
+    .dark-toggle svg{ width:14px; height:14px; }
+  }
+
+  /* the palette flip — variables only, so every component follows */
+  body.dark.tl-pinned{
+    --bg:#0d0d0f; --ink:#f2f2f2; --ink-soft:#c3c3c3; --ink-dim:#8e8e8e;
+    --ink-faint:#2c2c30; --ink-line:#3a3a40;
+    background:#0d0d0f;
+  }
+  body.dark.tl-pinned #timeline{ background:#0d0d0f; }
+  body.dark.tl-pinned .sab-nav{ background:transparent; }
+  body.dark.tl-pinned .sab-nav.scrolled{ background:rgba(13,13,15,.9); }
+  /* ══ header: the official 100-years lock-up replaces the plain logo ══
+     Four variants (EN/AR × light/dark), all transparent-background per client.
+     Constant size — the shrink-on-scroll behaviour was dropped per client. */
+  .sab-nav .nav-logo{
+    height:42px !important; width:auto;
+    content:normal;
+  }
+  .sab-nav.scrolled .nav-logo{ height:42px !important; }
+  html[lang="ar"] .sab-nav .nav-logo{ content:normal; }
+  body.dark.tl-pinned .sab-nav .nav-logo{ content:normal; }
+  html[lang="ar"] body.dark.tl-pinned .sab-nav .nav-logo{ content:normal; }
+  /* breathing space: clear-space rule = one hexagon around the lock-up */
+  .sab-nav .navbar-brand{ padding-block:.3rem; margin-inline-end:2.6rem; }
+  @media (max-width:900px){
+    .sab-nav .nav-logo{ height:30px !important; }
+    /* constant per breakpoint — the desktop 42px .scrolled rule outranks the
+       30px base here (0,3,0 vs 0,2,0), so without this twin the logo GROWS
+       from 30 to 42px on scroll on phones */
+    .sab-nav.scrolled .nav-logo{ height:30px !important; }
+    .sab-nav .navbar-brand{ margin-inline-end:1rem; }
+  }
+
+  /* menu dropped: no hamburger, links always inline */
+  .sab-nav .navbar-toggler{ display:none !important; }
+  .sab-nav .navbar-collapse{
+    display:flex !important; flex-grow:0; width:auto; flex-basis:auto;
+    align-items:center;
+  }
+  @media (max-width:900px){
+    .sab-nav .navbar-collapse{ gap:.7rem; }
+    .sab-nav .nav-link{ font-size:.6rem; letter-spacing:.08em; white-space:nowrap; }
+  }
+
+  /* Leadership visibility is driven by LEADERSHIP_VISIBLE in the build script */
+
+  /* the timeline controls hard-code background:#fff but take color from --ink,
+     which flips light in dark mode — restyle the whole rail, or the chevrons,
+     END label and toggle text render white-on-white and vanish */
+  body.dark.tl-pinned .scrub-btn,
+  body.dark.tl-pinned .scrub-end,
+  body.dark.tl-pinned .dark-toggle{
+    background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.26); color:#f2f2f2;
+  }
+  body.dark.tl-pinned .scrub-btn:hover,
+  body.dark.tl-pinned .scrub-end:hover,
+  body.dark.tl-pinned .dark-toggle:hover{
+    background:rgba(255,255,255,.16); border-color:#fff; color:#fff;
+  }
+  body.dark.tl-pinned .scrub-play{
+    background:var(--accent) !important; border-color:var(--accent) !important; color:#fff !important;
+  }
+  body.dark.tl-pinned .scrub-track::before{ background:rgba(255,255,255,.22); }
+  body.dark.tl-pinned .scrub-tick{ background:rgba(255,255,255,.26); }
+  body.dark.tl-pinned .scrub-tick.active{ background:var(--accent); }
+  body.dark.tl-pinned .scrub-year{ color:#e6e6e6; }
+  /* the year tooltip is background:var(--ink) + color:#fff — in dark mode --ink
+     flips near-white, so the pill and its label both go white and the year
+     disappears. Flip the label dark instead. */
+  body.dark.tl-pinned .scrub-tick::after{ background:#f2f2f2; color:#111; }
+  body.dark.tl-pinned .index-rail{ color:#9a9a9a; }
+  /* mobile menu button: Bootstrap's icon is a dark SVG — invert it on dark */
+  body.dark.tl-pinned .navbar-toggler{ border-color:rgba(255,255,255,.35); }
+  body.dark.tl-pinned .navbar-toggler-icon{ filter:invert(1) brightness(1.6); }
+  body.dark.tl-pinned #mainNav.show,
+  body.dark.tl-pinned #mainNav.collapsing{
+    background:rgba(13,13,15,.96); border-radius:8px; padding:.5rem .75rem;
+  }
+  body.dark.tl-pinned .item-year-big{
+    text-shadow:0 0 20px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.8);
+  }
+  /* artwork with transparent backgrounds is drawn for light pages — float it on
+     a soft plate in dark mode so black ink and dark subjects stay readable */
+  body.dark.tl-pinned .m-photo.cut img,
+  body.dark.tl-pinned .m-photo.cut video,
+  body.dark.tl-pinned .item.finale .m-photo img{
+    background:rgba(255,255,255,.94);
+    padding:14px; border-radius:6px;
+  }
+  body.dark.tl-pinned .m-photo.vcut::before{ opacity:0; }
+  /* Leadership is a page of its own — always light, even from a dark timeline */
+  .lead-overlay{ color-scheme:light; }
+  body.dark .lead-overlay{
+    --bg:#fff; --ink:#1c1c1c; --ink-soft:#4a4a4a; --ink-dim:#767676;
+    --ink-faint:#e5e5e5; --ink-line:#d9d9d9;
+    background:#fafafa; color:#1c1c1c;
+  }
+
+  /* milestone counter — smaller, less shouty */
+  .index-rail{ font-size:.6rem; }
+  .index-rail .total{ font-size:1.35rem !important; margin-top:.2rem; }
+  @media (max-width:900px){
+    .index-rail{ top:64px; }
+    .index-rail .total{ font-size:1.05rem !important; }
+  }
+
+  /* ── option 3: no hero kicker ── */
+  .hero .hero-kicker{ display:none !important; }
+
+  /* ── option 3: leadership lives on its own page, opened from the menu ── */
+  .lead-nav-link{ cursor:pointer; text-decoration:none; }
+  .lead-overlay{
+    position:fixed; inset:0; z-index:3000; background:#fafafa;
+    overflow-y:auto; overflow-x:hidden;
+    opacity:0; transition:opacity .35s var(--ease);
+  }
+  .lead-overlay.in{ opacity:1; }
+  .lead-chrome{
+    display:flex; justify-content:flex-end;
+    max-width:1140px; margin:0 auto; padding:1.5rem 2rem 0;
+  }
+  .lead-close{
+    width:42px; height:42px; flex:0 0 42px; border-radius:50%;
+    border:1px solid var(--ink-line); background:#fff; color:var(--ink);
+    font-size:16px; line-height:0; cursor:pointer;
+    transition:border-color .3s var(--ease), color .3s var(--ease), transform .3s var(--ease);
+  }
+  .lead-close:hover{ border-color:var(--accent); color:var(--accent); transform:rotate(90deg); }
+  .lead-overlay .leadership-section{
+    border-top:0; border-bottom:0; background:transparent;
+    padding-top:1.5rem;
+  }
+
+  /* ── option 3: 3D multiplane milestone — photo deep, year floating in front,
+       text on graded planes; scroll (+pointer on desktop) drives the parallax ── */
+  .item.has-photo{
+    text-align:center !important; width:min(700px, 90vw) !important;
+    top:calc(50% + 8px);
+    transform-style:preserve-3d;
+  }
+  .m-photo{
+    margin:0 0 .5rem; line-height:0;
+    position:relative;
+    transform-style:preserve-3d;
+    opacity:0; transition:opacity .8s var(--ease) .1s;
+  }
+  .item.live .m-photo{ opacity:1; }
+  .m-photo img, .m-photo video{
+    max-width:min(620px, 84vw); max-height:34vh;
+    width:auto; height:auto; display:inline-block;
+    background:#fff; padding:6px;
+    border:1px solid var(--ink-faint);
+    box-shadow:calc(var(--pp, 0) * -44px) calc(20px + var(--pa, 0) * 12px) calc(38px + var(--pa, 0) * 26px) rgba(0,0,0,.17);
+    transform:
+      translateX(calc(var(--pp, 0) * 150px))
+      translateY(calc(var(--pp, 0) * 30px + var(--vel, 0) * -10px))
+      translateZ(calc(-155px + var(--pa, 0) * 75px)) scale(1.085)
+      rotateY(calc(var(--pp, 0) * -15deg + var(--mx, 0) * 5.5deg))
+      rotateX(calc(var(--my, 0) * -4deg + var(--vel, 0) * -6deg))
+      rotateZ(calc(var(--pp, 0) * 1.8deg));
+    transition:transform .5s cubic-bezier(.3,1.25,.35,1), box-shadow .5s linear;
+    will-change:transform;
+  }
+  /* (light sweep removed per user — no shine overlay on the photos) */
+  .item.has-photo .item-year-big{
+    font-size:clamp(44px, 6vw, 86px);
+    position:relative; margin-top:-1.9rem;
+    text-shadow:0 0 18px rgba(255,255,255,.95), 0 0 5px rgba(255,255,255,.8);
+    transform:
+      translateZ(calc(46px + var(--pa, 0) * 44px))
+      translateX(calc(var(--pp, 0) * -52px + var(--mx, 0) * -16px))
+      translateY(calc(var(--my, 0) * -8px + var(--vel, 0) * 16px));
+    transition:transform .42s cubic-bezier(.3,1.3,.35,1);
+    will-change:transform;
+  }
+  .item.has-photo .item-title{
+    margin-top:.2rem;
+    transform:translateZ(calc(28px + var(--pa, 0) * 28px)) translateX(calc(var(--pp, 0) * -30px + var(--mx, 0) * -9px)) translateY(calc(var(--vel, 0) * 9px));
+    transition:transform .38s cubic-bezier(.3,1.3,.35,1);
+  }
+  .item.has-photo .item-desc{
+    max-width:640px; margin:0 auto !important;
+    transform:translateZ(calc(14px + var(--pa, 0) * 20px)) translateX(calc(var(--pp, 0) * -16px + var(--mx, 0) * -5px)) translateY(calc(var(--vel, 0) * 5px));
+    transition:transform .34s cubic-bezier(.3,1.3,.35,1);
+  }
+  /* alpha-cutout stills (background removed) float frameless with a silhouette shadow */
+  .m-photo.cut img{
+    background:transparent; padding:0; border:none;
+    box-shadow:none !important;
+    filter:drop-shadow(calc(var(--pp, 0) * -26px) calc(14px + var(--pa, 0) * 8px) calc(20px + var(--pa, 0) * 12px) rgba(0,0,0,.32));
+  }
+  html[dir="rtl"] .m-photo.cut img{
+    filter:drop-shadow(calc(var(--pp, 0) * 26px) calc(14px + var(--pa, 0) * 8px) calc(20px + var(--pa, 0) * 12px) rgba(0,0,0,.32));
+  }
+  /* frameless full-bleed photos (no white matte) — shadow, sweep and 3D kept */
+  .m-photo.bare img, .m-photo.bare video{
+    background:transparent; padding:0; border:none;
+  }
+  /* die-cut VIDEO: CSS-masked to the subject silhouette; a drop-shadow filter
+     would be clipped by the mask, so the shadow comes from ::before instead */
+  .m-photo.cut video{
+    background:transparent; padding:0; border:none;
+    box-shadow:none !important;
+    -webkit-mask-size:100% 100%; mask-size:100% 100%;
+    -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  }
+  .m-photo.cut::after{ display:none; }   /* rectangular light sweep breaks the silhouette */
+  .m-photo.vcut::before{
+    content:""; position:absolute; left:50%; bottom:-5%;
+    width:64%; height:10%; pointer-events:none;
+    background:radial-gradient(ellipse at center, rgba(0,0,0,.30), transparent 65%);
+    filter:blur(7px);
+    transform:translateX(calc(-50% + var(--pp, 0) * 46px)) translateZ(-150px);
+    opacity:calc(.3 + var(--pa, 0) * .6);
+  }
+  html[dir="rtl"] .m-photo.vcut::before{
+    transform:translateX(calc(-50% + var(--pp, 0) * -46px)) translateZ(-150px);
+  }
+  html[dir="rtl"] .m-photo img, html[dir="rtl"] .m-photo video{
+    box-shadow:calc(var(--pp, 0) * 44px) calc(20px + var(--pa, 0) * 12px) calc(38px + var(--pa, 0) * 26px) rgba(0,0,0,.17);
+    transform:
+      translateX(calc(var(--pp, 0) * -150px))
+      translateY(calc(var(--pp, 0) * 30px + var(--vel, 0) * -10px))
+      translateZ(calc(-155px + var(--pa, 0) * 75px)) scale(1.085)
+      rotateY(calc(var(--pp, 0) * 15deg + var(--mx, 0) * 5.5deg))
+      rotateX(calc(var(--my, 0) * -4deg + var(--vel, 0) * -6deg))
+      rotateZ(calc(var(--pp, 0) * -1.8deg));
+  }
+  html[dir="rtl"] .item.has-photo .item-year-big{
+    transform:translateZ(calc(46px + var(--pa, 0) * 44px)) translateX(calc(var(--pp, 0) * 52px + var(--mx, 0) * -16px)) translateY(calc(var(--my, 0) * -8px + var(--vel, 0) * 16px));
+  }
+  html[dir="rtl"] .item.has-photo .item-title{
+    transform:translateZ(calc(28px + var(--pa, 0) * 28px)) translateX(calc(var(--pp, 0) * 30px + var(--mx, 0) * -9px)) translateY(calc(var(--vel, 0) * 9px));
+  }
+  html[dir="rtl"] .item.has-photo .item-desc{
+    transform:translateZ(calc(14px + var(--pa, 0) * 20px)) translateX(calc(var(--pp, 0) * 16px + var(--mx, 0) * -5px)) translateY(calc(var(--vel, 0) * 5px));
+  }
+  @media (max-width:768px){
+    .m-photo img, .m-photo video{ max-height:28vh; }
+    /* no negative overlap on phones — the print is full-width, so the year
+       would land on the photograph instead of just kissing its edge */
+    .item.has-photo .item-year-big{ font-size:clamp(34px, 8.5vw, 50px); margin-top:.35rem; }
+    .item.has-photo .item-title{ font-size:clamp(1.05rem, 5vw, 1.4rem); }
+    .item.has-photo .m-photo{ margin-bottom:.35rem; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .m-photo img, .m-photo video, .item.has-photo .item-year-big,
+    .item.has-photo .item-title, .item.has-photo .item-desc,
+    html[dir="rtl"] .m-photo img, html[dir="rtl"] .m-photo video, html[dir="rtl"] .item.has-photo .item-year-big,
+    html[dir="rtl"] .item.has-photo .item-title, html[dir="rtl"] .item.has-photo .item-desc{
+      transform:none !important; transition:opacity .8s var(--ease) !important;
+    }
+    .m-photo::after{ display:none; }
+  }
+

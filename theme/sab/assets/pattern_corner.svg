@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="535" height="1059" viewBox="1385.3 11.5 534.7 1059.4">
+<defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,0,1080)" d="M1903.731 1068.149 1385.427 538.651 1903.731 9.153H1920V1068.149Z"/>
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,0,1080)" d="M1903.731 1068.149 1385.427 538.651 1903.731 9.153H1920V1068.149Z"/>
+</clipPath>
+<clipPath id="clip_3">
+<path transform="matrix(1,0,0,-1,0,1080)" d="M1903.731 1068.149 1385.427 538.651 1903.731 9.153H1920V1068.149Z"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1,0,0,-1,0,1080)" d="M1903.731 1068.149 1385.427 538.651 1903.731 9.153H1920V1068.149Z"/>
+</clipPath>
+</defs>
+<g>
+<g inkscape:groupmode="layer" inkscape:label="Layer 1">
+<path transform="matrix(1,0,0,-1,1827.2365,992.7002)" d="M0 0 76.495-78.147H92.763V94.749Z" fill="currentColor"/>
+<g clip-path="url(#clip_1)">
+<path transform="matrix(1,0,0,-1,1770.5136,1069.4453)" d="M0 0-172.341 176.03V-176.03Z" fill="currentColor"/>
+</g>
+<path transform="matrix(1,0,0,-1,1752.1002,717.381)" d="M0 0 167.9-171.494V171.494Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,1598.1732,758.69009)" d="M0 0 65.943-67.367 172.34 41.308 0 217.338Z" fill="currentColor"/>
+<g clip-path="url(#clip_2)">
+<path transform="matrix(1,0,0,-1,1418.3748,717.3812)" d="M0 0-179.798-176.03H179.798Z" fill="currentColor"/>
+</g>
+<path transform="matrix(1,0,0,-1,1385.4285,541.3509)" d="M0 0 104.11-106.358 212.745 0Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,1752.1002,365.3172)" d="M0 0 167.9-171.494V171.494Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,1598.1732,324.00813)" d="M0 0V-217.339L172.34-41.31 65.942 67.366Z" fill="currentColor"/>
+<path transform="matrix(1,0,0,-1,1385.4285,541.3473)" d="M0 0H212.745L104.11 106.358Z" fill="currentColor"/>
+<g clip-path="url(#clip_3)">
+<path transform="matrix(1,0,0,-1,1418.3748,365.31739)" d="M0 0 179.798 176.03H-179.798Z" fill="currentColor"/>
+</g>
+<path transform="matrix(1,0,0,-1,1903.7313,11.851196)" d="M0 0-76.495-78.147 16.268-172.896V0Z" fill="currentColor"/>
+<g clip-path="url(#clip_4)">
+<path transform="matrix(1,0,0,-1,1770.5136,13.253906)" d="M0 0-172.341 176.03V-176.03Z" fill="currentColor"/>
+</g>
+</g>
+</g>
+</svg>
