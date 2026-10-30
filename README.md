@@ -16,7 +16,7 @@ Install ACF Pro and Polylang separately. Activate SAB Content and the SAB Centen
 
 Every push to `main` runs `.github/workflows/release.yml`, checks syntax, stamps the theme/plugin with the same increasing version, and publishes their ZIPs in a GitHub Release. Code is served from `https://github.com/pmunankarmi/sab`.
 
-Keep **SAB Content** active. WordPress uses its native theme/plugin update API hooks to read the latest release. Available versions appear in **Dashboard → Updates**, **Appearance → Themes**, **Plugins**, and a SAB admin notice. **Tools → SAB GitHub Updates** shows the installed/latest versions and provides **Check GitHub now**.
+Keep **SAB Content** active. WordPress uses its native theme/plugin update API hooks to read the latest release. Available versions appear in **Dashboard → Updates**, **Appearance → Themes**, **Plugins**, and a SAB admin notice. **Tools → SAB GitHub Updates** shows the installed/latest versions with automatic checks.
 
 An administrator visit triggers a check at most hourly; WordPress's scheduled update checks also run normally. Detection is not instantaneous, and WordPress must be able to reach GitHub. A push creates an available update; installation still requires the administrator's normal Update action unless they separately enable WordPress auto-updates.
 

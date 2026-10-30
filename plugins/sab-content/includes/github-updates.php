@@ -10,7 +10,6 @@ final class SAB_GitHub_Updates {
         add_filter( 'update_plugins_github.com', array( __CLASS__, 'plugin_update' ), 10, 4 );
         add_filter( 'plugins_api', array( __CLASS__, 'plugin_info' ), 10, 3 );
         add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
-        add_action( 'admin_post_sab_check_github', array( __CLASS__, 'manual_check' ) );
         add_action( 'admin_init', array( __CLASS__, 'maybe_check' ) );
         add_action( 'admin_notices', array( __CLASS__, 'notice' ) );
         add_action( 'upgrader_process_complete', array( __CLASS__, 'clear_cache' ), 10, 2 );
@@ -65,15 +64,6 @@ final class SAB_GitHub_Updates {
         set_site_transient( 'sab_github_admin_checked', 1, HOUR_IN_SECONDS );
         self::release(); wp_update_themes(); wp_update_plugins();
     }
-    public static function manual_check() {
-        if ( ! current_user_can( 'update_themes' ) || ! current_user_can( 'update_plugins' ) ) wp_die( esc_html__( 'You cannot check updates for this site.', 'sab' ) );
-        check_admin_referer( 'sab_check_github' );
-        delete_site_transient( self::CACHE ); delete_site_transient( 'sab_github_admin_checked' );
-        // Native "Check again" behavior: clear the last-checked timestamp to force a request now.
-        foreach ( array( 'update_themes', 'update_plugins' ) as $key ) { $transient = get_site_transient( $key ); if ( is_object( $transient ) ) { $transient->last_checked = 0; set_site_transient( $key, $transient ); } }
-        self::maybe_check();
-        wp_safe_redirect( admin_url( 'tools.php?page=sab-github-updates&checked=1' ) ); exit;
-    }
     public static function menu() { add_management_page( 'SAB GitHub Updates', 'SAB GitHub Updates', 'update_plugins', 'sab-github-updates', array( __CLASS__, 'screen' ) ); }
     public static function screen() {
         $release = self::release(); $theme = wp_get_theme( 'sab' );
@@ -84,9 +74,8 @@ final class SAB_GitHub_Updates {
         else echo '<p>Latest release: <a href="' . esc_url( $release['url'] ) . '">' . esc_html( $release['version'] ) . '</a></p>';
         $checked = (int) get_site_option( 'sab_github_last_check', 0 );
         if ( $checked ) echo '<p>Last checked: ' . esc_html( wp_date( 'Y-m-d H:i:s', $checked ) ) . '</p>';
-        echo '<p>Every push to main builds a release. Checks run hourly when an administrator visits and during normal WordPress update checks. Install available packages from Dashboard → Updates. GitHub pushes do not install files automatically.</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="sab_check_github">';
-        wp_nonce_field( 'sab_check_github' ); submit_button( 'Check GitHub now', 'secondary' );
-        echo '</form><p><a class="button button-primary" href="' . esc_url( admin_url( 'update-core.php' ) ) . '">Open WordPress Updates</a></p></div>';
+        echo '<p>Every push to main builds a release. Update checks run automatically on administrator visits and during normal WordPress scheduled checks. Available packages appear in Dashboard → Updates. GitHub pushes do not install files automatically.</p>';
+        echo '<p><a class="button button-primary" href="' . esc_url( admin_url( 'update-core.php' ) ) . '">Open WordPress Updates</a></p></div>';
     }
     public static function notice() {
         if ( ! current_user_can( 'update_plugins' ) ) return;
