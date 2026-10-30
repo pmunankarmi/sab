@@ -15,7 +15,7 @@ The implementation uses a native PHP theme, ACF Pro and Polylang. No separate fr
 
 Start **SAB** in Local before visiting these URLs. Source is maintained in `/Users/puskar/Documents/ChatGPT/SAB`. `python3 tools/sync-local.py` copies the theme and content plugin to the local installation. This requires filesystem access to the installation directory.
 
-Local uses PHP 8.2.29, WordPress 7.1.4, ACF Pro 6.8.6 and Polylang 3.6.2. ACF Pro was copied from your existing local test installation; no license or license database was copied. A local-only MU plugin prevents external HTTP requests because the macOS Local PHP worker aborted during dashboard requests to external services. It allows local, GitHub and WordPress update-service requests; external requests that are allowed use the streams transport. This helper is excluded from the delivery packages. Do not deploy it to staging or production.
+Local uses PHP 8.2.29, WordPress 7.1.4, ACF Pro 6.8.6 and Polylang 3.6.2. ACF Pro was copied from your existing local test installation; no license or license database was copied. A local-only MU plugin prevents external HTTP requests because the macOS Local PHP worker aborted during dashboard requests to external services. It allows local, GitHub and WordPress update-service requests; external requests that are allowed use IPv4 DNS resolution with normal TLS verification. This helper is excluded from the delivery packages. Do not deploy it to staging or production.
 
 ## Install on a fresh WordPress site
 
@@ -68,4 +68,4 @@ The source repository is https://github.com/pmunankarmi/sab. Every push to `main
 
 WordPress checks the public release API during its normal update checks and at most hourly on an administrator visit. Available updates appear in Dashboard → Updates and the native theme/plugin screens. Tools → SAB GitHub Updates shows the automatic check and release status. This is polling, not an instantaneous webhook. Website files are installed only by the administrator's Update action unless they separately enable WordPress auto-updates.
 
-On this Local installation, the local-only HTTP helper allows GitHub API and release downloads through WordPress's streams transport, avoiding the Local cURL worker crash while keeping TLS certificate verification enabled. Other external services remain isolated locally. None of this Local-only configuration is shipped in the installable packages.
+On this Local installation, the local-only HTTP helper allows GitHub API and release downloads through IPv4 DNS resolution, avoiding macOS's NAT64 lookup crash in forked PHP-FPM workers while keeping TLS certificate verification enabled. Other external services remain isolated locally. None of this Local-only configuration is shipped in the installable packages.

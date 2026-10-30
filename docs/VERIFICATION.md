@@ -20,3 +20,5 @@ The local PHP worker's external HTTP crash was isolated with a local-only MU plu
 GitHub updater checks cover native theme/plugin responses, version metadata, package URL validation, unrelated plugin/theme isolation, and prerelease rejection.
 
 The first GitHub Actions release completed successfully. The real GitHub release was detected by local WordPress, with both native theme and content-plugin update responses present. No available update was installed during verification.
+
+A native AJAX plugin update was tested successfully after correcting Local’s macOS NAT64 DNS crash with local-only IPv4 resolution. TLS verification and macOS fork protections remain enabled. The stale maintenance flag left by the failed update was cleared.
