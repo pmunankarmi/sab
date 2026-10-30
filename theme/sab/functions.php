@@ -1,5 +1,9 @@
 <?php
 defined( 'ABSPATH' ) || exit;
+// Use WordPress's native classic editors throughout this theme.
+add_filter( 'use_block_editor_for_post', '__return_false', 100 );
+add_filter( 'use_block_editor_for_post_type', '__return_false', 100 );
+add_filter( 'use_widgets_block_editor', '__return_false', 100 );
 require_once get_template_directory() . '/inc/content.php';
 add_action( 'after_setup_theme', function () {
     load_theme_textdomain( 'sab', get_template_directory() . '/languages' );

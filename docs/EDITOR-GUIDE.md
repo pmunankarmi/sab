@@ -1,5 +1,7 @@
 # SAB editor guide
 
+Gutenberg is disabled while the SAB theme is active. Posts, pages, milestones and leadership use the native classic editor; widgets use the classic screen.
+
 ## Edit milestones
 
 Open **Milestones** and choose a language with Polylang. Each milestone uses the native WordPress title, editor content, featured image and Order field. ACF adds Year, optional video, optional mask, cutout treatment, cinematic layout and full-width finale treatment.
