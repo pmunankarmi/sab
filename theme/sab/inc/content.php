@@ -2,7 +2,21 @@
 defined( 'ABSPATH' ) || exit;
 function sab_lang() { return function_exists( 'pll_current_language' ) ? ( pll_current_language( 'slug' ) ?: 'en' ) : 'en'; }
 function sab_field( $name, $id = false ) { return function_exists( 'get_field' ) ? get_field( $name, $id ) : get_post_meta( $id ?: get_the_ID(), $name, true ); }
-function sab_option( $name, $shared = false ) { return function_exists( 'get_field' ) ? get_field( $name, $shared ? 'sab_global' : 'sab_' . sab_lang() ) : ''; }
+function sab_option( $name, $shared = false ) {
+    if ( ! function_exists( 'get_field' ) ) return '';
+    if ( in_array( $name, array( 'sab_language_logo', 'sab_language_dark_logo', 'sab_footer_logo' ), true ) ) {
+        $keys = array( 'sab_language_logo' => 'logo', 'sab_language_dark_logo' => 'dark_logo', 'sab_footer_logo' => 'footer_logo' );
+        foreach ( (array) get_field( 'sab_logo_variants', 'sab_global' ) as $row ) {
+            if ( is_array( $row ) && ( $row['language'] ?? '' ) === sab_lang() ) return $row[$keys[$name]] ?? 0;
+        }
+        // Compatibility until the content-plugin migration has run after an update.
+        return get_option( 'sab_polylang_strings_migrated_v1' ) ? 0 : get_option( 'sab_' . sab_lang() . '_' . $name, 0 );
+    }
+    $value = get_field( $name, 'sab_global' );
+    if ( $shared ) return $value;
+    if ( false === get_option( 'sab_polylang_strings_migrated_v1' ) ) return get_option( 'sab_' . sab_lang() . '_' . $name, $value );
+    return is_string( $value ) && function_exists( 'pll_translate_string' ) ? pll_translate_string( $value, sab_lang() ) : $value;
+}
 function sab_label( $key ) { return (string) sab_option( 'sab_label_' . $key ); }
 function sab_copy( $value ) { return wp_kses( (string) $value, array( 'em' => array(), 'strong' => array(), 'br' => array(), 'span' => array( 'class' => true ) ) ); }
 function sab_media_url( $id ) { return $id ? esc_url_raw( wp_get_attachment_url( (int) $id ) ) : ''; }

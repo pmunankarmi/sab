@@ -36,12 +36,16 @@ Formatted headings accept `em`, `strong`, `br` and limited span markup. Other fr
 - Shared contact fields: phone, email, website and map URL.
 - Social repeater: platform icon, accessible label, destination and ordering. An unrecognized platform uses a generic link icon.
 
-**EN Content & Labels** and **AR Content & Labels** contain language-specific logo overrides, footer logo, address, establishment line, copyright, regulatory text, website label, and interface/accessibility labels. Language logo overrides intentionally take precedence over the shared primary logo. Clear an override to inherit the native logo.
+**Languages → Translations**, group **SAB**, manages the address, contact accessibility label, establishment line, copyright, regulatory text, website label, interface labels and social accessibility labels. Existing English and Arabic values have been migrated.
+
+The single **Theme Options** page includes a **Language logo variants** repeater for language-specific primary, dark-background and footer logos. An empty primary override inherits the native Site Logo.
+
+The **Global source text and interface labels** panel defines editable source strings. Translate these in Polylang. Editing a source string creates a new string to translate; it does not automatically rewrite the previous translation. Native page/post content and navigation menus keep their linked Polylang translations.
 
 No email or street address was invented during migration. Enter those fields if a separate contact display is required. Existing regulatory text was migrated as supplied and remains editable.
 
 ## Menus and media
 
-Use Appearance → Menus to edit primary and footer menus for each language. Preserve the `sab-view-link` CSS class on the timeline item: the theme automatically turns it into the cinematic return link on the timeline page. Edit that return label under the corresponding language's **Nav Cinematic** option.
+Use Appearance → Menus to edit primary and footer menus for each language. Preserve the `sab-view-link` CSS class on the timeline item: the theme automatically turns it into the cinematic return link on the timeline page. Edit that return label under Languages → Translations, group SAB, for the **Nav Cinematic** source string.
 
 Media is stored as attachment IDs. Replace media through the Media Library/ACF selectors; no source path editing is needed. Site title and favicon use WordPress Site Identity. Supply alt text for meaningful images; milestone artwork is decorative beside the same visible milestone copy.

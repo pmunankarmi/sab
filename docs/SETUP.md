@@ -42,7 +42,7 @@ To migrate the already reviewed Local site instead, move its database and upload
 - Database and Media Library: all visitor-facing copy, media, logos, navigation, links and translations.
 - `seed/content.json` and `seed/media`: migration inputs only. Frontend templates never read seed content or use it as a fallback.
 
-ACF JSON schemas are in `plugins/sab-content/acf-json`. Language-specific option schemas are generated from `seed/option-fields.json` for each configured language. Preserve field keys if extending the schemas.
+ACF JSON schemas are in `plugins/sab-content/acf-json`. Shared source-string fields are generated from `seed/option-fields.json` and registered with Polylang in group SAB. A single shared options page holds settings and language logo variants. Preserve field keys if extending the schemas.
 
 ## Shared slugs
 
@@ -69,3 +69,9 @@ The source repository is https://github.com/pmunankarmi/sab. Every push to `main
 WordPress checks the public release API during its normal update checks and at most hourly on an administrator visit. Available updates appear in Dashboard → Updates and the native theme/plugin screens. Tools → SAB GitHub Updates shows the automatic check and release status. This is polling, not an instantaneous webhook. Website files are installed only by the administrator's Update action unless they separately enable WordPress auto-updates.
 
 On this Local installation, the local-only HTTP helper allows GitHub API and release downloads through IPv4 DNS resolution, avoiding macOS's NAT64 lookup crash in forked PHP-FPM workers while keeping TLS certificate verification enabled. Other external services remain isolated locally. None of this Local-only configuration is shipped in the installable packages.
+
+## Global text translation migration
+
+The separate EN/AR options pages are replaced by Languages → Translations, group SAB. Existing global text is copied once into the shared options source fields and Polylang catalogues on the first administrator request after updating SAB Content. Logo overrides move to a shared language-variants repeater. Existing catalogue translations take precedence over legacy values. A backup snapshot and the original legacy option records are retained for recovery; they are not the current editing interface.
+
+For an explicit CLI migration use `wp sab migrate-strings`. New imports write the shared source fields and catalogues directly. Update both the theme and SAB Content. Compatibility aliases allow the previous theme to use the new translations during a rolling update. The migration marker prevents subsequent updates from overwriting editorial translations.

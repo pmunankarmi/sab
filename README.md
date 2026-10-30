@@ -12,6 +12,10 @@ Native WordPress theme with ACF Pro, Polylang, cinematic/vertical milestone view
 
 Install ACF Pro and Polylang separately. Activate SAB Content and the SAB Centenary theme. On a fresh installation run `wp sab setup`, then `wp sab import` in a separate request. See [setup](docs/SETUP.md) and [editor guide](docs/EDITOR-GUIDE.md).
 
+## Translations
+
+Use linked Polylang pages/posts for content and **Languages → Translations → SAB** for global text and interface labels. There is one shared Theme Options page for branding, contacts, social links, source strings and language logo variants. Legacy EN/AR options migrate automatically once when an administrator opens WordPress.
+
 ## GitHub → WordPress updates
 
 Every push to `main` runs `.github/workflows/release.yml`, checks syntax, stamps the theme/plugin with the same increasing version, and publishes their ZIPs in a GitHub Release. Code is served from `https://github.com/pmunankarmi/sab`.

@@ -2,7 +2,7 @@
 <footer class="site-footer"><div class="f-inner">
  <div class="f-top"><?php sab_logo( 'footer-logo', true ); ?>
  <div class="f-social"><?php foreach ( (array) sab_option( 'sab_social', true ) as $social ) : if ( ! is_array( $social ) || empty( $social['sab_social_url'] ) ) continue; ?>
-  <a href="<?php echo esc_url( $social['sab_social_url'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $social['sab_social_label'] ); ?>"><?php get_template_part( 'template-parts/social-icon', null, array( 'platform' => $social['sab_social_platform'] ) ); ?><span class="screen-reader-text"><?php echo esc_html( $social['sab_social_label'] ); ?></span></a>
+  <a href="<?php echo esc_url( $social['sab_social_url'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( function_exists( 'pll__' ) ? pll__( $social['sab_social_label'] ) : $social['sab_social_label'] ); ?>"><?php get_template_part( 'template-parts/social-icon', null, array( 'platform' => $social['sab_social_platform'] ) ); ?><span class="screen-reader-text"><?php echo esc_html( function_exists( 'pll__' ) ? pll__( $social['sab_social_label'] ) : $social['sab_social_label'] ); ?></span></a>
  <?php endforeach; ?></div></div>
  <div class="f-rule"></div>
  <?php wp_nav_menu( array( 'theme_location' => 'footer', 'container' => false, 'menu_class' => 'f-legal', 'fallback_cb' => false, 'depth' => 1 ) ); ?>

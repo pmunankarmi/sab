@@ -40,6 +40,7 @@ add_action( 'plugins_loaded', function () {
 }, 30 );
 add_filter( 'acf/settings/load_json', function ( $paths ) { $paths[] = SAB_CONTENT_DIR . 'acf-json'; return $paths; } );
 require_once SAB_CONTENT_DIR . 'includes/options.php';
+require_once SAB_CONTENT_DIR . 'includes/string-migration.php';
 require_once SAB_CONTENT_DIR . 'includes/github-updates.php';
 require_once SAB_CONTENT_DIR . 'includes/import.php';
 add_action( 'admin_notices', function () {

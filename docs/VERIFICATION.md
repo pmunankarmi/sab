@@ -22,3 +22,5 @@ GitHub updater checks cover native theme/plugin responses, version metadata, pac
 The first GitHub Actions release completed successfully. The real GitHub release was detected by local WordPress, with both native theme and content-plugin update responses present. No available update was installed during verification.
 
 A native AJAX plugin update was tested successfully after correcting Local’s macOS NAT64 DNS crash with local-only IPv4 resolution. TLS verification and macOS fork protections remain enabled. The stale maintenance flag left by the failed update was cleared.
+
+Global text refactor: 70 existing English/Arabic values were verified after migration into Polylang; both language logo variants were preserved. A temporary Polylang catalogue edit reached both Arabic views and was restored. Re-running migration did not overwrite translations. Old theme field reads were verified against the new catalogues.

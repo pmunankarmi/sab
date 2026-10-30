@@ -32,7 +32,7 @@ function sab_run_import() {
     if ( ! PLL()->model->get_language( 'en' ) || ! PLL()->model->get_language( 'ar' ) ) throw new RuntimeException( 'Run wp sab setup first, then wp sab import in a new request.' );
     // Register option schemas after creating the languages in this request.
     do_action( 'sab_register_import_options' );
-    $pairs = array(); $page_ids = array();
+    $pairs = array(); $page_ids = array(); $global_values = array();
     foreach ( $seed['items'] as $i => $item ) {
         foreach ( array( 'en', 'ar' ) as $lang ) {
             $text = $item[$lang];
@@ -67,7 +67,7 @@ function sab_run_import() {
             $pairs[$role][$lang] = $id;
             if ( $new ) { set_post_thumbnail( $id, sab_import_asset( 'leader-' . $i . '.jpg' ) ); sab_seed_field( 'sab_pull_quote', $t[$role . '_pull'], $id ); }
         }
-        if ( ! get_option( 'sab_import_options_' . $lang ) ) {
+        if ( ! get_option( 'sab_polylang_strings_migrated_v1' ) ) {
             $fields = json_decode( file_get_contents( SAB_CONTENT_DIR . 'seed/option-fields.json' ), true );
             $values = array( 'sab_established' => $t['outro_meta_2'], 'sab_copyright' => $t['footer_rights'], 'sab_legal_text' => $t['footer_entity'], 'sab_website_label' => 'www.sab.com', 'sab_contact_label' => 'ar' === $lang ? 'معلومات الاتصال' : 'Contact details' );
             if ( 'ar' === $lang ) $values['sab_language_logo'] = sab_import_asset( 'brand/lockup_ar_light.png' );
@@ -76,10 +76,12 @@ function sab_run_import() {
             foreach ( $fields as $field ) {
                 $name = $field['name']; if ( 'tab' === $field['type'] ) continue;
                 $key = str_replace( 'sab_label_', '', $name );
-                if ( isset( $values[$name] ) || isset( $t[$key] ) ) update_field( $field['key'] . '_' . $lang, $values[$name] ?? $t[$key], 'sab_' . $lang );
+                if ( isset( $values[$name] ) || isset( $t[$key] ) ) $global_values[$lang][$name] = $values[$name] ?? $t[$key];
             }
-            update_option( 'sab_import_options_' . $lang, 1 );
         }
+    }
+    if ( ! get_option( 'sab_polylang_strings_migrated_v1' ) ) {
+        if ( ! sab_migrate_option_strings() && $global_values ) sab_migrate_option_strings( $global_values );
     }
     foreach ( $pairs as $pair ) pll_save_post_translations( $pair );
     if ( ! get_option( 'sab_import_configured' ) ) {
