@@ -5,3 +5,5 @@ dist/
 *.log
 
 .local-access.txt
+
+/docs/github-updates.jpg

@@ -18,3 +18,5 @@ The in-app browser's mobile viewport override did not change its actual 1280px v
 The local PHP worker's external HTTP crash was isolated with a local-only MU plugin; it is not included in the theme or content-plugin ZIPs. Production hosting, HTTPS, cache behavior, plugin updates and production ACF license activation have not been tested or deployed.
 
 GitHub updater checks cover native theme/plugin responses, version metadata, package URL validation, unrelated plugin/theme isolation, and prerelease rejection.
+
+The first GitHub Actions release completed successfully. The real GitHub release was detected by local WordPress, with both native theme and content-plugin update responses present. No available update was installed during verification.
