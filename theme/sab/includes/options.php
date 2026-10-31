@@ -4,7 +4,7 @@ function sab_content_languages() {
     return function_exists( 'pll_languages_list' ) ? pll_languages_list( array( 'fields' => 'slug' ) ) : array();
 }
 function sab_string_fields() {
-    $fields = json_decode( file_get_contents( SAB_CONTENT_DIR . 'seed/option-fields.json' ), true );
+    $fields = json_decode( file_get_contents( SAB_THEME_DATA_DIR . 'seed/option-fields.json' ), true );
     return array_values( array_filter( $fields, static fn( $field ) => in_array( $field['type'], array( 'text', 'textarea' ), true ) ) );
 }
 function sab_register_options() {
@@ -21,7 +21,7 @@ function sab_register_options() {
     ), 'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'sab-options' ) ) ) ) );
     // Field aliases keep old theme versions working during a rolling plugin/theme update.
     // There are no language-specific options pages or visible groups.
-    $legacy_fields = json_decode( file_get_contents( SAB_CONTENT_DIR . 'seed/option-fields.json' ), true );
+    $legacy_fields = json_decode( file_get_contents( SAB_THEME_DATA_DIR . 'seed/option-fields.json' ), true );
     foreach ( sab_content_languages() as $lang ) {
         $aliases = array();
         foreach ( $legacy_fields as $field ) {

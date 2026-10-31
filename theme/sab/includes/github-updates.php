@@ -7,8 +7,6 @@ final class SAB_GitHub_Updates {
     const CACHE = 'sab_github_release_v1';
     public static function init() {
         add_filter( 'update_themes_github.com', array( __CLASS__, 'theme_update' ), 10, 4 );
-        add_filter( 'update_plugins_github.com', array( __CLASS__, 'plugin_update' ), 10, 4 );
-        add_filter( 'plugins_api', array( __CLASS__, 'plugin_info' ), 10, 3 );
         add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
         add_action( 'admin_init', array( __CLASS__, 'maybe_check' ) );
         add_action( 'admin_notices', array( __CLASS__, 'notice' ) );
@@ -33,10 +31,10 @@ final class SAB_GitHub_Updates {
                 $prefix = self::REPO . '/releases/download/';
                 if ( str_starts_with( $url, $prefix ) && 'https' === wp_parse_url( $url, PHP_URL_SCHEME ) ) $assets[$asset['name']] = esc_url_raw( $url );
             }
-            if ( ! preg_match( '/^\d+\.\d+\.\d+$/', $version ) || ! empty( $json['draft'] ) || ! empty( $json['prerelease'] ) || empty( $assets['sab-theme.zip'] ) || empty( $assets['sab-content.zip'] ) ) {
+            if ( ! preg_match( '/^\d+\.\d+\.\d+$/', $version ) || ! empty( $json['draft'] ) || ! empty( $json['prerelease'] ) || empty( $assets['sab-theme.zip'] ) ) {
                 $result = array( 'error' => 'The latest release is missing valid SAB version metadata or installable packages.' );
             } else {
-                $result = array( 'version' => $version, 'url' => self::REPO . '/releases/tag/v' . $version, 'theme' => $assets['sab-theme.zip'], 'plugin' => $assets['sab-content.zip'], 'published' => sanitize_text_field( $json['published_at'] ?? '' ) );
+                $result = array( 'version' => $version, 'url' => self::REPO . '/releases/tag/v' . $version, 'theme' => $assets['sab-theme.zip'], 'published' => sanitize_text_field( $json['published_at'] ?? '' ) );
             }
         }
         set_site_transient( self::CACHE, $result, isset( $result['error'] ) ? 5 * MINUTE_IN_SECONDS : HOUR_IN_SECONDS );
@@ -48,28 +46,17 @@ final class SAB_GitHub_Updates {
         $release = self::release(); if ( isset( $release['error'] ) ) return $update;
         return array( 'theme' => 'sab', 'version' => $release['version'], 'url' => $release['url'], 'package' => $release['theme'], 'requires_php' => '8.0' );
     }
-    public static function plugin_update( $update, $data, $file, $locales ) {
-        if ( 'sab-content/sab-content.php' !== $file || self::REPO . '/sab-content' !== rtrim( $data['UpdateURI'] ?? '', '/' ) ) return $update;
-        $release = self::release(); if ( isset( $release['error'] ) ) return $update;
-        return array( 'slug' => 'sab-content', 'version' => $release['version'], 'url' => $release['url'], 'package' => $release['plugin'], 'requires_php' => '8.0' );
-    }
-    public static function plugin_info( $result, $action, $args ) {
-        if ( 'plugin_information' !== $action || 'sab-content' !== ( $args->slug ?? '' ) ) return $result;
-        $release = self::release(); if ( isset( $release['error'] ) ) return $result;
-        return (object) array( 'name' => 'SAB Content', 'slug' => 'sab-content', 'version' => $release['version'], 'homepage' => self::REPO, 'requires_php' => '8.0', 'download_link' => $release['plugin'], 'sections' => array( 'description' => 'SAB content types, ACF options, Polylang shared slugs and GitHub updates.', 'changelog' => '<a href="' . esc_url( $release['url'] ) . '">View release notes on GitHub</a>' ) );
-    }
     public static function maybe_check() {
-        if ( ! current_user_can( 'update_themes' ) && ! current_user_can( 'update_plugins' ) ) return;
+        if ( ! current_user_can( 'update_themes' ) ) return;
         if ( get_site_transient( 'sab_github_admin_checked' ) ) return;
         set_site_transient( 'sab_github_admin_checked', 1, HOUR_IN_SECONDS );
-        self::release(); wp_update_themes(); wp_update_plugins();
+        self::release(); wp_update_themes();
     }
-    public static function menu() { add_management_page( 'SAB GitHub Updates', 'SAB GitHub Updates', 'update_plugins', 'sab-github-updates', array( __CLASS__, 'screen' ) ); }
+    public static function menu() { add_management_page( 'SAB GitHub Updates', 'SAB GitHub Updates', 'update_themes', 'sab-github-updates', array( __CLASS__, 'screen' ) ); }
     public static function screen() {
         $release = self::release(); $theme = wp_get_theme( 'sab' );
-        $plugin = get_file_data( SAB_CONTENT_DIR . 'sab-content.php', array( 'Version' => 'Version' ) );
         echo '<div class="wrap"><h1>SAB GitHub Updates</h1><p>Repository: <a href="' . esc_url( self::REPO ) . '">pmunankarmi/sab</a></p>';
-        echo '<p>Installed theme: <strong>' . esc_html( $theme->get( 'Version' ) ) . '</strong> · Content plugin: <strong>' . esc_html( $plugin['Version'] ) . '</strong></p>';
+        echo '<p>Installed theme: <strong>' . esc_html( $theme->get( 'Version' ) ) . '</strong></p>';
         if ( isset( $release['error'] ) ) echo '<div class="notice notice-warning inline"><p>' . esc_html( $release['error'] ) . '</p></div>';
         else echo '<p>Latest release: <a href="' . esc_url( $release['url'] ) . '">' . esc_html( $release['version'] ) . '</a></p>';
         $checked = (int) get_site_option( 'sab_github_last_check', 0 );
@@ -78,10 +65,10 @@ final class SAB_GitHub_Updates {
         echo '<p><a class="button button-primary" href="' . esc_url( admin_url( 'update-core.php' ) ) . '">Open WordPress Updates</a></p></div>';
     }
     public static function notice() {
-        if ( ! current_user_can( 'update_plugins' ) ) return;
+        if ( ! current_user_can( 'update_themes' ) ) return;
         $release = get_site_transient( self::CACHE ); if ( ! is_array( $release ) || empty( $release['version'] ) ) return;
-        $theme = wp_get_theme( 'sab' ); $plugin = get_file_data( SAB_CONTENT_DIR . 'sab-content.php', array( 'Version' => 'Version' ) );
-        if ( ! version_compare( $release['version'], $theme->get( 'Version' ), '>' ) && ! version_compare( $release['version'], $plugin['Version'], '>' ) ) return;
+        $theme = wp_get_theme( 'sab' );
+        if ( ! version_compare( $release['version'], $theme->get( 'Version' ), '>' ) ) return;
         printf( '<div class="notice notice-info"><p>%s <a href="%s">%s</a></p></div>', esc_html( 'SAB ' . $release['version'] . ' is available from GitHub.' ), esc_url( admin_url( 'update-core.php' ) ), esc_html__( 'Review updates', 'sab' ) );
     }
     public static function clear_cache( $upgrader, $options ) {

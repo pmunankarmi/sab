@@ -13,16 +13,15 @@ The implementation uses a native PHP theme, ACF Pro and Polylang. No separate fr
 - Dashboard: http://sab.local/wp-admin/
 - Local credentials: `.local-access.txt` in the SAB source workspace, excluded from Git and delivery ZIPs.
 
-Start **SAB** in Local before visiting these URLs. Source is maintained in `/Users/puskar/Documents/ChatGPT/SAB`. `python3 tools/sync-local.py` copies the theme and content plugin to the local installation. This requires filesystem access to the installation directory.
+Start **SAB** in Local before visiting these URLs. Source is maintained in `/Users/puskar/Documents/ChatGPT/SAB`. `python3 tools/sync-local.py` copies the theme and retired compatibility stub to the local installation. This requires filesystem access to the installation directory.
 
-Local uses PHP 8.2.29, WordPress 7.1.4, ACF Pro 6.8.6 and Polylang 3.6.2. ACF Pro was copied from your existing local test installation; no license or license database was copied. A local-only MU plugin prevents external HTTP requests because the macOS Local PHP worker aborted during dashboard requests to external services. It allows local, GitHub and WordPress update-service requests; external requests that are allowed use IPv4 DNS resolution with normal TLS verification. This helper is excluded from the delivery packages. Do not deploy it to staging or production.
+Local uses PHP 8.2.29, WordPress 7.1.4, ACF Pro 6.8.6 and Polylang 3.9.1. ACF Pro was copied from your existing local test installation; no license or license database was copied. A local-only MU plugin prevents external HTTP requests because the macOS Local PHP worker aborted during dashboard requests to external services. It allows local, GitHub and WordPress update-service requests; external requests that are allowed use IPv4 DNS resolution with normal TLS verification. This helper is excluded from the delivery packages. Do not deploy it to staging or production.
 
 ## Install on a fresh WordPress site
 
 1. Install and activate your licensed ACF Pro and Polylang.
-2. Install `sab-content.zip` under Plugins and activate it.
-3. Install `sab-theme.zip` under Appearance → Themes and activate SAB Centenary.
-4. With WP-CLI, run these as separate commands from the WordPress directory:
+2. Install `sab-theme.zip` under Appearance → Themes and activate SAB Centenary.
+3. With WP-CLI, run these as separate commands from the WordPress directory:
 
    ```sh
    wp sab setup
@@ -33,20 +32,19 @@ Local uses PHP 8.2.29, WordPress 7.1.4, ACF Pro 6.8.6 and Polylang 3.6.2. ACF Pr
 
 The importer is intended for a fresh SAB installation. Back up an existing site before importing. Re-running the importer skips existing imported records and initialized options, preserving editorial changes and preventing duplicate media. It does not reset the site. Do not use the generic WordPress importer to recreate shared-slug translation pairs.
 
-To migrate the already reviewed Local site instead, move its database and uploads together with the theme and plugin, then perform a serialization-aware URL replacement. Do not copy `wp-config.php`, Local-specific MU plugins, local credentials or server configuration to production.
+To migrate the already reviewed Local site instead, move its database and uploads together with the theme, then perform a serialization-aware URL replacement. Do not copy `wp-config.php`, Local-specific MU plugins, local credentials or server configuration to production.
 
 ## Content and configuration ownership
 
-- Theme: templates, CSS, fonts, decorative SVGs and browser interactions.
-- SAB Content plugin: custom post types, ACF schemas, option pages, shared-slug compatibility and migration commands.
+- Theme: templates, assets, interactions, custom post types, ACF schemas, option pages, shared-slug compatibility, migration commands and GitHub updates.
 - Database and Media Library: all visitor-facing copy, media, logos, navigation, links and translations.
 - `seed/content.json` and `seed/media`: migration inputs only. Frontend templates never read seed content or use it as a fallback.
 
-ACF JSON schemas are in `plugins/sab-content/acf-json`. Shared source-string fields are generated from `seed/option-fields.json` and registered with Polylang in group SAB. A single shared options page holds settings and language logo variants. Preserve field keys if extending the schemas.
+ACF JSON schemas are in `theme/sab/acf-json`. Shared source-string fields are generated from `seed/option-fields.json` and registered with Polylang in group SAB. A single shared options page holds settings and language logo variants. Preserve field keys if extending the schemas.
 
 ## Shared slugs
 
-`includes/polylang-slug.php` reuses the GPL helper from your Ghalya project. Its duplicate-load guard now lives in the plugin loader so the file actually registers its filters. SAB skips this helper if Polylang Pro is active or a standalone copy already defines its function. The helper retains the reserved-slug and SQL-match guards.
+`includes/polylang-slug.php` reuses the GPL helper from your Ghalya project. Its duplicate-load guard now lives in the theme loader so the file actually registers its filters. SAB skips this helper if Polylang Pro is active or a standalone copy already defines its function. The helper retains the reserved-slug and SQL-match guards.
 
 English and Arabic translations have matching slugs, such as `/en/timeline/` and `/ar/timeline/`. Language directories remain necessary to distinguish translations. Re-test this compatibility helper when upgrading WordPress or Polylang.
 
@@ -64,14 +62,18 @@ The integration suite checks translation links, shared slugs, images, four front
 
 ## Future GitHub updates
 
-The source repository is https://github.com/pmunankarmi/sab. Every push to `main` automatically builds and publishes a versioned GitHub Release containing the correctly rooted `sab-theme.zip` and `sab-content.zip` packages. Keep SAB Content active for both update integrations.
+The source repository is https://github.com/pmunankarmi/sab. Every push to `main` automatically builds and publishes a versioned GitHub Release containing the correctly rooted `sab-theme.zip` and `sab-content.zip` packages. Only the SAB theme is required; the small content-plugin asset is a retired compatibility bridge for older updater versions.
 
-WordPress checks the public release API during its normal update checks and at most hourly on an administrator visit. Available updates appear in Dashboard → Updates and the native theme/plugin screens. Tools → SAB GitHub Updates shows the automatic check and release status. This is polling, not an instantaneous webhook. Website files are installed only by the administrator's Update action unless they separately enable WordPress auto-updates.
+WordPress checks the public release API during its normal update checks and at most hourly on an administrator visit. Available updates appear in Dashboard → Updates and the native theme screen. Tools → SAB GitHub Updates shows the automatic check and release status. This is polling, not an instantaneous webhook. Website files are installed only by the administrator's Update action unless they separately enable WordPress auto-updates.
 
 On this Local installation, the local-only HTTP helper allows GitHub API and release downloads through IPv4 DNS resolution, avoiding macOS's NAT64 lookup crash in forked PHP-FPM workers while keeping TLS certificate verification enabled. Other external services remain isolated locally. None of this Local-only configuration is shipped in the installable packages.
 
 ## Global text translation migration
 
-The separate EN/AR options pages are replaced by Languages → Translations, group SAB. Existing global text is copied once into the shared options source fields and Polylang catalogues on the first administrator request after updating SAB Content. Logo overrides move to a shared language-variants repeater. Existing catalogue translations take precedence over legacy values. A backup snapshot and the original legacy option records are retained for recovery; they are not the current editing interface.
+The separate EN/AR options pages are replaced by Languages → Translations, group SAB. Existing global text is copied once into the shared options source fields and Polylang catalogues on the first administrator request after updating the SAB theme. Logo overrides move to a shared language-variants repeater. Existing catalogue translations take precedence over legacy values. A backup snapshot and the original legacy option records are retained for recovery; they are not the current editing interface.
 
-For an explicit CLI migration use `wp sab migrate-strings`. New imports write the shared source fields and catalogues directly. Update both the theme and SAB Content. Compatibility aliases allow the previous theme to use the new translations during a rolling update. The migration marker prevents subsequent updates from overwriting editorial translations.
+For an explicit CLI migration use `wp sab migrate-strings`. New imports write the shared source fields and catalogues directly. Update the SAB theme. Compatibility aliases allow the previous theme to use the new translations during a rolling update. The migration marker prevents subsequent updates from overwriting editorial translations.
+
+## Upgrade from SAB Content
+
+Update the theme first. On an administrator request, the theme silently deactivates SAB Content without deleting data. Refresh once if the old plugin had already loaded; the theme then owns all features. The retired plugin can be deleted. No import is needed on an existing site. All field keys, post types, option identifiers and translation catalogues are preserved. ACF Pro and Polylang stay active.

@@ -24,3 +24,9 @@ The first GitHub Actions release completed successfully. The real GitHub release
 A native AJAX plugin update was tested successfully after correcting Local’s macOS NAT64 DNS crash with local-only IPv4 resolution. TLS verification and macOS fork protections remain enabled. The stale maintenance flag left by the failed update was cleared.
 
 Global text refactor: 70 existing English/Arabic values were verified after migration into Polylang; both language logo variants were preserved. A temporary Polylang catalogue edit reached both Arabic views and was restored. Re-running migration did not overwrite translations. Old theme field reads were verified against the new catalogues.
+
+## Theme-only consolidation (2026-10-31)
+
+All content registrations, ACF schemas/options, Polylang helper/catalogue migration, seed importer and GitHub theme updater now load from the SAB theme. SAB Content is inactive locally; only ACF Pro and Polylang are active. PHP syntax, integration, dynamic-content, Polylang-string (70 retained values, edit/restore, four HTTP 200 pages) and deterministic theme-updater checks passed. Packages build successfully. The theme updater accepts releases with only a theme asset. A tiny retired-plugin bridge remains published for older updater clients; update the theme first on existing sites. No database identifiers were renamed and no reimport is required.
+
+A pre-existing Local maintenance flag initially returned HTTP 503; it was cleared before the successful frontend checks above.

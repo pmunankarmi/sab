@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 function sab_import_asset( $relative, $title = '' ) {
     $existing = get_posts( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'posts_per_page' => 1, 'meta_key' => '_sab_source_asset', 'meta_value' => $relative, 'fields' => 'ids', 'suppress_filters' => true, 'lang' => '' ) );
     if ( $existing ) return (int) $existing[0];
-    $base = realpath( SAB_CONTENT_DIR . 'seed/media' ); $source = realpath( $base . '/' . $relative );
+    $base = realpath( SAB_THEME_DATA_DIR . 'seed/media' ); $source = realpath( $base . '/' . $relative );
     if ( ! $source || ! str_starts_with( $source, $base . DIRECTORY_SEPARATOR ) ) throw new RuntimeException( 'Missing seed asset: ' . $relative );
     require_once ABSPATH . 'wp-admin/includes/file.php'; require_once ABSPATH . 'wp-admin/includes/media.php'; require_once ABSPATH . 'wp-admin/includes/image.php';
     $temp = wp_tempnam( basename( $source ) ); copy( $source, $temp );
@@ -28,7 +28,7 @@ function sab_seed_field( $name, $value, $id ) { update_field( 'field_' . $name, 
 function sab_run_import() {
     if ( ! current_user_can( 'manage_options' ) && ! ( defined( 'WP_CLI' ) && WP_CLI ) ) throw new RuntimeException( 'Administrator access required.' );
     if ( ! function_exists( 'update_field' ) || ! function_exists( 'pll_set_post_language' ) ) throw new RuntimeException( 'Activate ACF Pro and Polylang first.' );
-    $seed = json_decode( file_get_contents( SAB_CONTENT_DIR . 'seed/content.json' ), true, 512, JSON_THROW_ON_ERROR );
+    $seed = json_decode( file_get_contents( SAB_THEME_DATA_DIR . 'seed/content.json' ), true, 512, JSON_THROW_ON_ERROR );
     if ( ! PLL()->model->get_language( 'en' ) || ! PLL()->model->get_language( 'ar' ) ) throw new RuntimeException( 'Run wp sab setup first, then wp sab import in a new request.' );
     // Register option schemas after creating the languages in this request.
     do_action( 'sab_register_import_options' );
@@ -42,8 +42,8 @@ function sab_run_import() {
             $filename = str_pad( (string) $i, 2, '0', STR_PAD_LEFT ) . '-' . $item['year'];
             set_post_thumbnail( $id, sab_import_asset( 'milestone-img/' . $filename . '.webp' ) );
             sab_seed_field( 'sab_year', $item['year'], $id );
-            if ( is_file( SAB_CONTENT_DIR . 'seed/media/milestone-vid/' . $filename . '.mp4' ) ) sab_seed_field( 'sab_video', sab_import_asset( 'milestone-vid/' . $filename . '.mp4' ), $id );
-            if ( is_file( SAB_CONTENT_DIR . 'seed/media/milestone-cut/' . str_pad( (string) $i, 2, '0', STR_PAD_LEFT ) . '-mask.png' ) ) sab_seed_field( 'sab_mask', sab_import_asset( 'milestone-cut/' . str_pad( (string) $i, 2, '0', STR_PAD_LEFT ) . '-mask.png' ), $id );
+            if ( is_file( SAB_THEME_DATA_DIR . 'seed/media/milestone-vid/' . $filename . '.mp4' ) ) sab_seed_field( 'sab_video', sab_import_asset( 'milestone-vid/' . $filename . '.mp4' ), $id );
+            if ( is_file( SAB_THEME_DATA_DIR . 'seed/media/milestone-cut/' . str_pad( (string) $i, 2, '0', STR_PAD_LEFT ) . '-mask.png' ) ) sab_seed_field( 'sab_mask', sab_import_asset( 'milestone-cut/' . str_pad( (string) $i, 2, '0', STR_PAD_LEFT ) . '-mask.png' ), $id );
             sab_seed_field( 'sab_cutout', in_array( $i, array( 4, 6, 21, 35 ), true ), $id );
             sab_seed_field( 'sab_finale', 35 === $i, $id );
         }
@@ -68,7 +68,7 @@ function sab_run_import() {
             if ( $new ) { set_post_thumbnail( $id, sab_import_asset( 'leader-' . $i . '.jpg' ) ); sab_seed_field( 'sab_pull_quote', $t[$role . '_pull'], $id ); }
         }
         if ( ! get_option( 'sab_polylang_strings_migrated_v1' ) ) {
-            $fields = json_decode( file_get_contents( SAB_CONTENT_DIR . 'seed/option-fields.json' ), true );
+            $fields = json_decode( file_get_contents( SAB_THEME_DATA_DIR . 'seed/option-fields.json' ), true );
             $values = array( 'sab_established' => $t['outro_meta_2'], 'sab_copyright' => $t['footer_rights'], 'sab_legal_text' => $t['footer_entity'], 'sab_website_label' => 'www.sab.com', 'sab_contact_label' => 'ar' === $lang ? 'معلومات الاتصال' : 'Contact details' );
             if ( 'ar' === $lang ) $values['sab_language_logo'] = sab_import_asset( 'brand/lockup_ar_light.png' );
             $values['sab_language_dark_logo'] = sab_import_asset( 'brand/lockup_' . $lang . '_dark.png' );

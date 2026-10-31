@@ -7,5 +7,5 @@ prior=Path('/Users/puskar/Documents/Sites/Tayseer/app/public/wp-content/plugins'
 for name in ['advanced-custom-fields-pro','polylang']:
  dest=wp/'wp-content/plugins'/name
  if not dest.exists():shutil.copytree(prior/name,dest)
-for args in [['plugin','activate','advanced-custom-fields-pro','polylang','sab-content'],['theme','activate','sab'],['sab','setup'],['sab','import']]:
+for args in [['plugin','activate','advanced-custom-fields-pro','polylang'],['theme','activate','sab'],['sab','setup'],['sab','import']]:
  subprocess.run([str(workspace/'tools/local-wp'),*args],check=True)

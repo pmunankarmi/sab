@@ -1,6 +1,6 @@
 from pathlib import Path
 import json
-root=Path('plugins/sab-content')
+root=Path('theme/sab')
 def f(name,label,typ='text',**kw):return dict(key='field_'+name,name=name,label=label,type=typ,**kw)
 def image(name,label,**kw):return f(name,label,'image',return_format='id',preview_size='medium',library='all',**kw)
 def group(key,title,fields,param,value):
